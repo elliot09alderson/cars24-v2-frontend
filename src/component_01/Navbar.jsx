@@ -7,12 +7,11 @@ import Swal from "sweetalert2";
 import logo from "/logo/karlo.png";
 const Navbar = () => {
   const financeData = [
-    { text: "cars in madhyapradesh", path: "mp" },
+    { text: "cars in mp", path: "mp" },
     { text: "cars in gujrat", path: "gj" },
-    { text: "cars in chhattisgarh", path: "/cg" },
-    { text: "cars in maharastra", path: "/mh" },
-    { text: "sell cars", path: "" },
-    { text: "Buy used car", path: "" },
+    { text: "cars in cg", path: "/cg" },
+    { text: "sell cars", path: "/agent/post/vehicle" },
+    { text: "Buy used car", path: "/ads" },
   ];
   const { userInfo } = useSelector((slice) => slice.auth);
   useEffect(() => {
@@ -55,8 +54,8 @@ const Navbar = () => {
         >
           {financeData.map((item, idx) => (
             <Link key={idx + "link"} to={item.path}>
-              <div className="gap-2 cursor-pointer after:absolute after:block  after:bottom-5 w-fit  after:w-0 hover:after:w-32 after:duration-500 after:h-1 after:bg-[#fc2e00] after:content-[''] ">
-                <p className="lg:text-lg text-xs text-[#0F0F26f]">
+              <div className="gap-2 cursor-pointer after:absolute after:block  after:bottom-5 w-fit  after:w-0 hover:after:w-20 after:duration-500 after:h-1 after:bg-[#fc2e00] after:content-[''] ">
+                <p className="lg:text-lg text-xs  text-[#0F0F26f]">
                   {item.text}
                 </p>
                 {/* <ChevronDown className={`size-5 lg:flex hidden`} /> */}

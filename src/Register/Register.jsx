@@ -57,7 +57,7 @@ const Register = () => {
 
   return (
     <div
-      className=" w-full  h-fit lg:h-screen bg-cover bg-center relative  flex items-center justify-center"
+      className=" w-full  h-fit lg:min-h-screen bg-cover bg-center relative  flex items-center justify-center"
       style={{
         backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0) 80%), url(${home})`,
       }}
@@ -73,13 +73,13 @@ const Register = () => {
           <div>Powerful Dashboard</div>
         </div>
       </div> */}
-      <div className="bg-white lg:absolute  h-full lg:h-[80vh] lg:w-[27vw]  right-4 items-center  lg:rounded-lg p-10 flex flex-col gap-4 z-10 lg:px-16 w-full">
-        <div className=" pb-0  w-full ">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-gray-400 text-sm pb-8 racing">
+      <div className="bg-white lg:absolute  h-full lg:min-h-[80vh] lg:w-[27vw]  right-4 items-center  lg:rounded-lg p-5 flex flex-col gap-4 z-10 lg:px-16 w-full">
+        <div className=" pb-0  w-full  ">
+          <div className="flex flex-col ">
+            {/* <h1 className="text-gray-400 text-sm pb-8 racing">
               Welcome to <span className="font-semibold ">KARLO</span>
-            </h1>
-            <h1 className="text-black text-xl font-racing  text-center lg:text-3xl font-semibold ">
+            </h1> */}
+            <h1 className="text-black text-xl font-racing  text-center lg:text-2xl font-semibold ">
               Register to get Started
             </h1>
           </div>
@@ -110,7 +110,7 @@ const Register = () => {
             className="w-full"
           >
             {({ setFieldValue }) => (
-              <Form className="flex flex-col gap-4 lg:gap-8 w-full">
+              <Form className="flex flex-col gap-4 lg:gap-4 w-full">
                 {/* Image Upload */}
                 <div className="relative">
                   <input
@@ -129,17 +129,17 @@ const Register = () => {
                     style={{ color: "red" }}
                   />
                 </div>
-                <div className="relative flex items-center justify-center mt-4 w-full">
+                <div className="relative flex items-center justify-center  w-full">
                   <label
                     htmlFor="image"
-                    className="absolute bg-gray-500 lg:top-20 top-15 border p-1 rounded-full"
+                    className="absolute bg-gray-500 lg:top-8 top-15 border p-1 rounded-full"
                   >
                     <FaUserPlus />
                   </label>
                   <img
                     src={previewImage ? previewImage : logo}
                     alt="Preview"
-                    className="rounded-full ring-2 w-20 h-20 lg:w-24 lg:h-24"
+                    className="rounded-full ring-2 w-20 h-20 lg:w-12 lg:h-12 object-cover"
                   />
                 </div>
 
