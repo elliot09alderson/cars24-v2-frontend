@@ -8,11 +8,11 @@ const Ads = () => {
     <div>
       <Navbar />
       <div className="w-full h-full flex lg:flex-row flex-col lg:justify-center gap-4 py-30">
-        <div className="lg:w-[290px]   bg-white  h-auto shadow-lg rounded-lg px-2  cursor-pointer">
+        <div className="lg:w-1/6   bg-white  h-auto shadow-lg rounded-lg px-2  cursor-pointer">
           <Sidebar />
         </div>
 
-        <div className="lg:w-[950px] xl:w-[1250px] min-h-screen scrollbar-hide">
+        <div className="lg:w-4/6  min-h-screen scrollbar-hide">
           <CarContainer />
         </div>
       </div>

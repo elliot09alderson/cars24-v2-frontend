@@ -42,7 +42,7 @@ const Navbar = () => {
     });
   }
   return (
-    <div className="flex lg:px-34 px-0 shadow-md border border-b fixed z-70 bg-white border-gray-100 border-r-0 w-full lg:h-20 h-16 ">
+    <div className="flex lg:px-24 px-0 shadow-md border border-b fixed z-70 bg-white border-gray-100 border-r-0 w-full lg:h-20 h-16 ">
       <div className="flex lg:gap-2 gap-0 items-center w-full  justify-center lg:justify-between ">
         <div className="cursor-pointer">
           <Link to={"/"}>

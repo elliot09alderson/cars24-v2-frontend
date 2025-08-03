@@ -37,28 +37,25 @@ const LoginAgent = () => {
       }}
     >
       <div className=" hidden lg:flex absolute bottom-24 left-24 text-4xl  text-white md:w-[400px] lg:w-full w-full  ">
-        <div className="absolute bottom-0 left-20 text-4xl text-white gap-12  w-full hidden lg:flex  ">
-          <h1 className="lg:w-[600px]">
+        <div className="absolute bottom-0 left-20 text-2xl text-white gap-12  w-full hidden lg:flex  ">
+          <h1 className="lg:w-[400px]">
             Hundereds of Users of Chhattisgarh used Karlo to buy their first
-            Dream Home.
+            Car.
           </h1>
-          <div className="flex gap-5 items-center lg:w-[400px] justify-between font-semibold w-full text-lg  self-end">
+          <div className="flex gap-5 items-center lg:w-[400px] justify-between font-semibold  text-base  self-end">
             <div>1000+ Active and Trusted Ads</div>
             <div>Easy Purchase</div>
             <div>Powerful Dashboard</div>
           </div>
         </div>
       </div>
-      <div className=" backdrop-blur-3xl bg-white  lg:absolute  h-full lg:h-[96vh] lg:w-[27vw] md:w-[40vw] w-full top-4  right-4  items-center  lg:rounded-lg p-10 flex flex-col gap-4 z-10 lg:px-16 px-10 ">
-        <div className="py-4 lg:mt-20 mt-0 w-full">
+      <div className=" backdrop-blur-3xl bg-white  lg:absolute  h-full lg:h-[90vh] lg:w-[27vw] md:w-[40vw] w-full top-4  right-4  items-center  lg:rounded-lg p-10 flex flex-col gap-4 z-10 lg:px-16 px-10 ">
+        <div className="py-4  mt-0 w-full">
           <div className="flex flex-col gap-4">
             <img src={logo} alt="" className="w-32 mb-2" />
 
-            <h1 className="text-gray-400 text-sm pb-2 hidden lg:block">
-              Welcome to <span className="font-semibold">Karlo</span>
-            </h1>
-            <h1 className="text-black  text-2xl lg:text-3xl font-bold pb-12">
-              Login to upload Ad
+            <h1 className="text-black  racing text-2xl lg:text-3xl font-bold pb-12">
+              Agent Login
             </h1>
           </div>
           <Formik

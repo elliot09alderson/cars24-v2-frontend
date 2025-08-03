@@ -44,16 +44,16 @@ const Login = () => {
           <div>Powerful Dashboard</div>
         </div>
       </div> */}
-      <div className="backdrop-blur-2xl  bg-white lg:absolute   h-screen lg:h-[80vh] lg:w-[27vw]  right-4 items-center  lg:rounded-2xl p-10 flex flex-col gap-4 z-10 lg:px-16 px-8">
-        <div className="py-4 mt-20">
-          <div className="flex flex-col gap-4">
-            <img src={logo} alt="" className="h-14 w-28 mb-2" />
+      <div className="backdrop-blur-2xl  bg-white lg:absolute   h-screen  lg:w-[27vw] lg:h-[96vh]  right-4 items-center  lg:rounded-2xl flex flex-col gap-4 z-10 lg:px-16 px-8">
+        <div className="py-4 mt-20 w-full">
+          <div className="flex flex-col gap-4 w-full">
+            {/* <img src={logo} alt="" className="h-14 w-28 mb-2" /> */}
 
-            <h1 className="text-gray-400 text-sm pb-2 racing">
+            {/* <h1 className="text-gray-400 text-sm pb-2 racing">
               Welcome to <span className="font-semibold">KARLO</span>
-            </h1>
-            <h1 className="text-black  text-2xl font-racing lg:text-3xl font-bold pb-12">
-              Get started with your email or phone number
+            </h1> */}
+            <h1 className="text-black text-center racing  text-2xl font-racing lg:text-3xl font-bold pb-12">
+              KARLO LOGIN
             </h1>
           </div>
           <Formik
@@ -69,8 +69,14 @@ const Login = () => {
             }}
           >
             {({ isSubmitting }) => (
-              <Form className="flex flex-col gap-8 ">
+              <Form className="flex flex-col gap-5 ">
                 <div>
+                  <label
+                    htmlFor=""
+                    className=" pl-1 text-gray-800 font-semibold text-lg"
+                  >
+                    Email
+                  </label>
                   <Field
                     type="email"
                     id="email"
@@ -87,6 +93,12 @@ const Login = () => {
                 </div>
 
                 <div>
+                  <label
+                    htmlFor=""
+                    className=" pl-1 text-gray-800 font-semibold text-lg"
+                  >
+                    Password
+                  </label>
                   <Field
                     type="password"
                     id="password"
@@ -105,7 +117,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={loader}
-                  className="w-full px-8 h-14 racing uppercase  lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-blue-600 text-white"
+                  className="w-full px-8 h-14 racing uppercase  mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-blue-600 text-white"
                 >
                   {loader ? "loading..." : "Submit"}
                 </button>

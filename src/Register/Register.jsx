@@ -73,14 +73,14 @@ const Register = () => {
           <div>Powerful Dashboard</div>
         </div>
       </div> */}
-      <div className="bg-white lg:absolute  h-full lg:min-h-[80vh] lg:w-[27vw]  right-4 items-center  lg:rounded-lg p-5 flex flex-col gap-4 z-10 lg:px-16 w-full">
+      <div className="bg-white lg:absolute   lg:min-h-[80vh] lg:w-[27vw]   right-4 items-center  lg:rounded-lg p-8 flex flex-col gap-4 z-10 lg:px-16 w-full">
         <div className=" pb-0  w-full  ">
           <div className="flex flex-col ">
             {/* <h1 className="text-gray-400 text-sm pb-8 racing">
               Welcome to <span className="font-semibold ">KARLO</span>
             </h1> */}
-            <h1 className="text-black text-xl font-racing  text-center lg:text-2xl font-semibold ">
-              Register to get Started
+            <h1 className="text-black text-xl font-racing  text-center lg:text-3xl racing uppercase font-semibold pb-2">
+              KARLO Register
             </h1>
           </div>
           <Formik
@@ -145,12 +145,12 @@ const Register = () => {
 
                 {/* Name Field */}
                 <div className="mt-4  ">
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Name
-                  </label>
+                  </label> */}
                   <Field
                     type="text"
                     id="name"
@@ -169,12 +169,12 @@ const Register = () => {
                 {/* Email Field */}
                 <div>
                   {" "}
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Email
-                  </label>
+                  </label> */}
                   <Field
                     type="email"
                     id="email"
@@ -192,12 +192,12 @@ const Register = () => {
 
                 {/* Password Field */}
                 <div>
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Password
-                  </label>
+                  </label> */}
                   <Field
                     type="password"
                     id="password"
@@ -236,12 +236,12 @@ const Register = () => {
                 {/* Confirm Password Field */}
                 <div>
                   {" "}
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Confirm password
-                  </label>
+                  </label> */}
                   <Field
                     type="password"
                     id="confirmPassword"
@@ -260,12 +260,12 @@ const Register = () => {
                 {/* Phone Number Field */}
                 <div>
                   {" "}
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Phone Number
-                  </label>
+                  </label> */}
                   <Field
                     type="text"
                     id="phoneNumber"
