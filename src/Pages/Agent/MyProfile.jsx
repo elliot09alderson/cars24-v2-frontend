@@ -54,26 +54,12 @@ const MyProfile = () => {
   }
 
   return (
-    <div className="w-full lg:flex-row flex-col flex h-full lg:h-screen ">
+    <div className="w-full lg:flex-row flex-col flex h-full lg:min-h-screen">
       <div
-        className={`lg:w-[17%] w-full${
+        className={`lg:w-[20%] w-full${
           openSidebar ? " hidden h-screen w-[90vw]  z-50 " : " hidden "
-        }   h-screen bg-white border border-r-gray-300 shadow-md lg:flex top-0 left-0     justify-center   flex-col  gap-20   px-4 lg:pl-12 pl-4   `}
+        }   h-screen bg-white border border-r-gray-300 shadow-md lg:flex top-0 left-0     justify-center   flex-col  gap-10   px-4 lg:pl-4 pl-4   `}
       >
-        <Link
-          to={"/agent/post/vehicle"}
-          className={` ${
-            activeSidebar == -1 && " border bg-gray-100"
-          } p-4 flex  border-2 border-amber-200 shadow-md hover:border hover:bg-gray-100   text-black items-center lg:my-0 my-4 gap-3 rounded-md cursor-pointer  text-xl font-lg`}
-        >
-          <img
-            src={createad}
-            alt=""
-            className="size-8 rounded-full object-cover"
-          />
-          <h1>Upload Vehicle </h1>
-        </Link>
-
         <div className=" flex flex-col lg:gap-5 gap-2 mb-6 lg:mb-0 ">
           {[
             { name: "Profile", img: profile },
@@ -94,6 +80,33 @@ const MyProfile = () => {
             </div>
           ))}
         </div>
+        <Link
+          to={"/agent/post/ad"}
+          className={` ${
+            activeSidebar == 1 && " border bg-gray-100"
+          } p-4 flex  border-2 border-blue-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0  gap-3 rounded-md cursor-pointer  text-xl font-lg`}
+        >
+          <img
+            src={createad}
+            alt=""
+            className="size-8 rounded-full object-cover"
+          />
+          <h1>Upload banner ad</h1>
+        </Link>
+        <Link
+          to={"/agent/post/vehicle"}
+          className={` ${
+            activeSidebar == -1 && " border bg-gray-100"
+          } p-4 flex  border-2 border-amber-200 shadow-md hover:border hover:bg-gray-100   text-black items-center lg:my-0  gap-3 rounded-md cursor-pointer  text-xl font-lg`}
+        >
+          <img
+            src={createad}
+            alt=""
+            className="size-8 rounded-full object-cover"
+          />
+          <h1>Upload Vehicle </h1>
+        </Link>
+
         <div
           onClick={() => {
             dispatch(seActiveSidebar(9));
@@ -127,12 +140,12 @@ const MyProfile = () => {
       </div>
       {
         <div
-          className={`lg:w-[17%] bg-white h-screen ${
+          className={`lg:w-[12%] bg-white h-screen ${
             openSidebar ? "    bg-red-500 w-full  px-4  " : " w-0  p-0"
           }    overflow-hidden absolute duration-700 lg:hidden  z-50  border border-r-gray-300 shadow-md flex top-0 left-0    justify-center   flex-col  lg:pl-12  py-20 `}
         >
           <Link
-            to={"/agent/post"}
+            to={"/agent/post/vehicle"}
             className={` ${
               activeSidebar == 1 && " border bg-gray-100"
             } p-4 flex  border-2 border-amber-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0 my-4 gap-3 rounded-md cursor-pointer  text-xl font-lg`}
@@ -144,7 +157,19 @@ const MyProfile = () => {
             />
             <h1>Upload Vehicle</h1>
           </Link>
-
+          <Link
+            to={"/agent/post/ad"}
+            className={` ${
+              activeSidebar == 1 && " border bg-gray-100"
+            } p-4 flex  border-2 border-blue-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0 my-4 gap-3 rounded-md cursor-pointer  text-xl font-lg`}
+          >
+            <img
+              src={createad}
+              alt=""
+              className="size-8 rounded-full object-cover"
+            />
+            <h1>Upload banner ad</h1>
+          </Link>
           <div className=" flex flex-col lg:gap-5 gap-2 mb-6 lg:mb-0 ">
             {[
               { name: "Profile", img: profile },
@@ -197,7 +222,7 @@ const MyProfile = () => {
           </div>
         </div>
       }
-      <div className="lg:w-[83%] w-full relative lg:flex-row flex-col h-full lg:h-screen overflow-y-scroll ">
+      <div className="lg:w-[83%] w-full relative  overflow-scroll-y  lg:flex-row flex-col h-full lg:min-h-screen  ">
         <div
           className="w-12 h-12 fixed  right-5 z-50 top-5 bg-slate-800 rounded-full cursor-pointer p-1 lg:hidden flex items-center justify-center text-white"
           onClick={() => setOpenSidebar((prev) => !prev)}
@@ -284,7 +309,7 @@ const MyProfile = () => {
           </div>
         )}
 
-        <div className={`${openSidebar ? " select-none " : ""}`}>
+        <div className={`${openSidebar ? " select-none " : ""} h-full`}>
           {activeSidebar == 1 && <AgentAllAds data={AllAdsData} />}
         </div>
       </div>

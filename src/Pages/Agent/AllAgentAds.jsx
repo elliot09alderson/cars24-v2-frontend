@@ -15,9 +15,9 @@ const AllAgentAds = () => {
     <div className="xl:px-12">
       <h1 className="text-5xl py-5 drop-shadow-lg text-center racing uppercase">
         Agent Ads
-      </h1>
+      </h1> 
 
-      <div className="my-20 flex gap-12 items-center justify-start  ">
+      <div className="my-20 flex gap-12 items-center flex-wrap lg:justify-start  justify-center ">
         {myAds?.map((item, idx) => (
           <Link key={item.slug + idx} to={`/vehicle/detail/${item.slug}`}>
             <div className="flex relative flex-col gap-4 w-[340px] bg-slate-800 hover:bg-slate-700 group duration-500 cursor-pointer text-white items-center p-4 rounded-xl justify-center">
