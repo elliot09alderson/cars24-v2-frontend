@@ -44,7 +44,7 @@ const Login = () => {
           <div>Powerful Dashboard</div>
         </div>
       </div> */}
-      <div className="backdrop-blur-2xl  bg-white lg:absolute   h-screen  lg:w-[27vw] lg:h-[96vh]  right-4 items-center  lg:rounded-2xl flex flex-col gap-4 z-10 lg:px-16 px-8">
+      <div className="backdrop-blur-2xl  bg-white lg:absolute   h-screen  lg:w-[27vw] lg:h-[80vh]  right-4 items-center  lg:rounded-2xl flex flex-col gap-4 z-10 lg:px-16 px-8">
         <div className="py-4 mt-20 w-full">
           <div className="flex flex-col gap-4 w-full">
             {/* <img src={logo} alt="" className="h-14 w-28 mb-2" /> */}
@@ -69,14 +69,14 @@ const Login = () => {
             }}
           >
             {({ isSubmitting }) => (
-              <Form className="flex flex-col gap-5 ">
+              <Form className="flex flex-col gap-8 ">
                 <div>
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Email
-                  </label>
+                  </label> */}
                   <Field
                     type="email"
                     id="email"
@@ -93,12 +93,12 @@ const Login = () => {
                 </div>
 
                 <div>
-                  <label
+                  {/* <label
                     htmlFor=""
                     className=" pl-1 text-gray-800 font-semibold text-lg"
                   >
                     Password
-                  </label>
+                  </label> */}
                   <Field
                     type="password"
                     id="password"
