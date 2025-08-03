@@ -49,7 +49,7 @@ const RegisterAgent = () => {
   };
 
   // useEffect(() => {
-    
+
   //   navigate("/agent/login");
   // }, [successMessage]);
   return (
@@ -59,8 +59,8 @@ const RegisterAgent = () => {
         backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 70%), url(${building2})`,
       }}
     >
-      <div className="absolute bottom-24 left-24 text-4xl text-white   w-full hidden lg:flex  ">
-        <h1 className="lg:w-[600px]">
+      <div className="absolute bottom-24 left-24 items-center justify-center text-2xl text-white gap-8   hidden lg:flex  ">
+        <h1 className="lg:w-[500px]">
           Hundereds of Users of Chhattisgarh used Karlo to buy their first Dream
           Home.
         </h1>
@@ -71,13 +71,13 @@ const RegisterAgent = () => {
         </div>
       </div>
       <div className="bg-white lg:absolute  h-full lg:h-[96vh] lg:w-[27vw] top-4 right-4 items-center  lg:rounded-lg p-10 flex flex-col gap-4 z-10 lg:px-16 px-10">
-        <div className="lg:py-4 py-0 ">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-gray-400 text-sm pb-2">
+        <div className=" py-0 w-full ">
+          <div className="flex flex-col gap-4 w-full">
+            <h1 className="text-gray-400 text-sm  racing ">
               Welcome to <span className="font-semibold">Karlo</span>
             </h1>
-            <h1 className="text-black  lg:text-3xl text-2xl font-bold pb-2">
-              Get started with your email or phone number
+            <h1 className="text-black  text-3xl font-bold racing">
+              Register Karlo
             </h1>
           </div>
           <Formik
@@ -125,19 +125,14 @@ const RegisterAgent = () => {
                 <div className="relative flex items-center justify-center">
                   <label
                     htmlFor="image"
-                    className="absolute bg-gray-500 top-20 border p-1 rounded-full"
+                    className="absolute bg-gray-500 top-8 border p-1 rounded-full"
                   >
                     <FaUserPlus />
                   </label>
                   <img
                     src={previewImage ? previewImage : logo}
                     alt="Preview"
-                    className="rounded-full ring-2"
-                    style={{
-                      width: "100px",
-                      height: "100px",
-                      objectFit: "cover",
-                    }}
+                    className="rounded-full w-14 h-14 object-cover ring-2"
                   />
                 </div>
 

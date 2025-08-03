@@ -48,9 +48,7 @@ const AdminLogin = () => {
             <h1 className="text-gray-400 text-sm pb-2">
               Welcome to <span className="font-semibold">KARLO</span>
             </h1>
-            <h1 className="text-black  text-3xl font-bold pb-8">
-              Get started with your email or phone number
-            </h1>
+            <h1 className="text-black  text-3xl font-bold pb-8">Register</h1>
           </div>
           <Formik
             initialValues={{ email: "", password: "" }}

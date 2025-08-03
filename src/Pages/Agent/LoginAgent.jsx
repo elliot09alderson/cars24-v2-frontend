@@ -36,9 +36,9 @@ const LoginAgent = () => {
         backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 70%), url(${building})`,
       }}
     >
-      <div className=" hidden lg:flex absolute bottom-24 left-24 text-4xl  text-white md:w-[400px] lg:w-full w-full  ">
-        <div className="absolute bottom-0 left-20 text-2xl text-white gap-12  w-full hidden lg:flex  ">
-          <h1 className="lg:w-[400px]">
+      <div className=" hidden lg:flex relative text-4xl   text-white md:w-[400px] lg:w-full w-full h-full ">
+        <div className="absolute bottom-20  text-2xl text-white gap-12  w-full hidden lg:flex  ">
+          <h1 className="lg:w-[400px] ml-24 ">
             Hundereds of Users of Chhattisgarh used Karlo to buy their first
             Car.
           </h1>
