@@ -156,3 +156,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Theme Variables */
+:root {
+  --color-primary: 16 163 74;
+  --color-primary-hover: 21 128 61;
+  --color-primary-light: 220 252 231;
+}
+
+/* Green Theme (Default) */
+.theme-green {
+  --color-primary: 16 163 74;
+  --color-primary-hover: 21 128 61;
+  --color-primary-light: 220 252 231;
+}
+
+/* Light/White Theme */
+.theme-white {
+  --color-primary: 107 114 128;
+  --color-primary-hover: 75 85 99;
+  --color-primary-light: 243 244 246;
+}
+
+/* Dark/Black Theme */
+.theme-black {
+  --color-primary: 24 24 27;
+  --color-primary-hover: 39 39 42;
+  --color-primary-light: 63 63 70;
+}
+
+/* Theme utility classes */
+.bg-theme-primary {
+  background-color: rgb(var(--color-primary));
+}
+
+.bg-theme-primary-hover:hover {
+  background-color: rgb(var(--color-primary-hover));
+}
+
+.bg-theme-primary-light {
+  background-color: rgb(var(--color-primary-light));
+}
+
+.text-theme-primary {
+  color: rgb(var(--color-primary));
+}
+
+.border-theme-primary {
+  border-color: rgb(var(--color-primary));
+}
+
+.ring-theme-primary {
+  --tw-ring-color: rgb(var(--color-primary));
+}

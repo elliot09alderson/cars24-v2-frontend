@@ -6,9 +6,13 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "../rtk/store/store.js";
 import { ToastContainer, toast } from "react-toastify";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
+
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <ToastContainer />
-    <App />
+    <ThemeProvider>
+      <ToastContainer />
+      <App />
+    </ThemeProvider>
   </Provider>
 );

@@ -225,6 +225,11 @@ export const authReducer = createSlice({
         state.successMessage = payload.message;
         state.loader = false;
       })
+      .addCase(customer_logout.rejected, (state) => {
+        // Clear userInfo even if API fails
+        state.userInfo = null;
+        state.loader = false;
+      })
       .addCase(admin_login.pending, (state) => {
         state.loader = true;
       })
@@ -241,6 +246,11 @@ export const authReducer = createSlice({
       .addCase(admin_logout.fulfilled, (state, { payload }) => {
         state.userInfo = null;
         state.successMessage = payload.message;
+        state.loader = false;
+      })
+      .addCase(admin_logout.rejected, (state) => {
+        // Clear userInfo even if API fails
+        state.userInfo = null;
         state.loader = false;
       })
       .addCase(agent_register.pending, (state) => {
@@ -270,6 +280,11 @@ export const authReducer = createSlice({
       .addCase(agent_logout.fulfilled, (state, { payload }) => {
         state.userInfo = null;
         state.successMessage = payload.message;
+        state.loader = false;
+      })
+      .addCase(agent_logout.rejected, (state) => {
+        // Clear userInfo even if API fails
+        state.userInfo = null;
         state.loader = false;
       })
       .addCase(check_session.pending, (state) => {

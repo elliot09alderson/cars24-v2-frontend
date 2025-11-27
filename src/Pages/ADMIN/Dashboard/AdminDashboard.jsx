@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Car,
   Users,
@@ -103,23 +103,40 @@ const QuickAction = ({ icon: Icon, title, description, onClick }) => (
 );
 
 // State Distribution
-const StateCard = ({ name, code, count, icon }) => (
-  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+const StateCard = ({ name, code, count, icon, onClick, isActive }) => (
+  <button
+    onClick={onClick}
+    className={`w-full flex items-center justify-between p-4 rounded-xl transition-all duration-200 group cursor-pointer
+      ${isActive
+        ? "bg-green-50 border-2 border-green-500 shadow-md"
+        : "bg-gray-50 border-2 border-transparent hover:bg-green-50 hover:border-green-200 hover:shadow-md"
+      }`}
+  >
     <div className="flex items-center gap-3">
-      <span className="text-2xl">{icon}</span>
-      <div>
-        <p className="font-semibold text-gray-900">{name}</p>
+      <span className={`text-2xl transition-transform duration-200 ${isActive ? "scale-110" : "group-hover:scale-110"}`}>
+        {icon}
+      </span>
+      <div className="text-left">
+        <p className={`font-semibold transition-colors ${isActive ? "text-green-700" : "text-gray-900 group-hover:text-green-700"}`}>
+          {name}
+        </p>
         <p className="text-xs text-gray-500">{code}</p>
       </div>
     </div>
-    <div className="text-right">
-      <p className="text-xl font-bold text-gray-900">{count}</p>
-      <p className="text-xs text-gray-500">vehicles</p>
+    <div className="text-right flex items-center gap-2">
+      <div>
+        <p className={`text-xl font-bold transition-colors ${isActive ? "text-green-600" : "text-gray-900 group-hover:text-green-600"}`}>
+          {count}
+        </p>
+        <p className="text-xs text-gray-500">vehicles</p>
+      </div>
+      <ChevronRight className={`size-5 transition-all duration-200 ${isActive ? "text-green-600 translate-x-1" : "text-gray-300 group-hover:text-green-500 group-hover:translate-x-1"}`} />
     </div>
-  </div>
+  </button>
 );
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     totalVehicles: 0,
     totalAgents: 0,
@@ -128,13 +145,26 @@ const AdminDashboard = () => {
   });
   const [recentVehicles, setRecentVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedState, setSelectedState] = useState(null);
+  const [stateDistribution, setStateDistribution] = useState({
+    MP: 0,
+    GJ: 0,
+    CG: 0,
+    MH: 0,
+  });
 
   const licensedStates = [
-    { name: "Madhya Pradesh", code: "MP", icon: "🏛️", count: 0 },
-    { name: "Gujarat", code: "GJ", icon: "🦁", count: 0 },
-    { name: "Chhattisgarh", code: "CG", icon: "🌾", count: 0 },
-    { name: "Maharashtra", code: "MH", icon: "🚪", count: 0 },
+    { name: "Madhya Pradesh", code: "MP", icon: "🏛️" },
+    { name: "Gujarat", code: "GJ", icon: "🦁" },
+    { name: "Chhattisgarh", code: "CG", icon: "🌾" },
+    { name: "Maharashtra", code: "MH", icon: "🚪" },
   ];
+
+  const handleStateClick = (stateCode) => {
+    setSelectedState(stateCode);
+    // Navigate to vehicles page with state filter
+    navigate(`/admin/vehicles?state=${stateCode}`);
+  };
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -150,6 +180,17 @@ const AdminDashboard = () => {
             totalViews: 2340, // Placeholder - tracking not implemented yet
           });
           setRecentVehicles(data.recentVehicles || []);
+
+          // Process state distribution from API
+          if (data.stateDistribution) {
+            const stateData = { MP: 0, GJ: 0, CG: 0, MH: 0 };
+            data.stateDistribution.forEach((item) => {
+              if (item._id && stateData.hasOwnProperty(item._id)) {
+                stateData[item._id] = item.count;
+              }
+            });
+            setStateDistribution(stateData);
+          }
         }
       } catch (error) {
         console.error("Error fetching dashboard stats:", error);
@@ -291,7 +332,7 @@ const AdminDashboard = () => {
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <div className="p-6 border-b border-gray-100">
             <h2 className="text-lg font-bold text-gray-900">Licensed States</h2>
-            <p className="text-sm text-gray-500 mt-1">Vehicle distribution by state</p>
+            <p className="text-sm text-gray-500 mt-1">Click a state to view vehicles</p>
           </div>
           <div className="p-6 space-y-3">
             {licensedStates.map((state) => (
@@ -300,7 +341,9 @@ const AdminDashboard = () => {
                 name={state.name}
                 code={state.code}
                 icon={state.icon}
-                count={Math.floor(Math.random() * 50) + 10}
+                count={stateDistribution[state.code] || 0}
+                onClick={() => handleStateClick(state.code)}
+                isActive={selectedState === state.code}
               />
             ))}
           </div>

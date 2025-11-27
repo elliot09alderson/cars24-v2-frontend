@@ -1,20 +1,28 @@
-import { ChevronDown, Menu, Phone, X, MapPin, Car, Store } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { ChevronDown, Menu, Phone, X, MapPin, Car, Store, Palette, Check } from "lucide-react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { customer_logout } from "../../rtk/slices/authSlice";
 import { setFilter } from "../../rtk/slices/vehicleSlice";
-import Swal from "sweetalert2";
+import { useTheme } from "../context/ThemeContext";
 import logo from "/logo/karlo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((slice) => slice.auth);
+  const { theme, setTheme } = useTheme();
 
   const [open, setOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [statesDropdown, setStatesDropdown] = useState(false);
+  const [themeDropdown, setThemeDropdown] = useState(false);
+
+  const themeOptions = [
+    { key: "green", name: "Green", color: "bg-green-600" },
+    { key: "white", name: "Light", color: "bg-gray-300" },
+    { key: "black", name: "Dark", color: "bg-zinc-800" },
+  ];
 
   // Licensed States Data
   const licensedStates = [
@@ -31,26 +39,14 @@ const Navbar = () => {
     setMobileMenu(false);
   };
 
-  function logout() {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will be logged out",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#000",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, logout!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Logged out",
-          text: "Logout successful",
-          icon: "success",
-        });
-        dispatch(customer_logout());
-      }
-      setOpen(false);
-    });
+  async function logout() {
+    setOpen(false);
+    try {
+      await dispatch(customer_logout()).unwrap();
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+    navigate("/");
   }
 
   return (
@@ -136,6 +132,51 @@ const Navbar = () => {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
+            {/* Theme Switcher */}
+            <div className="relative hidden lg:block">
+              <button
+                onClick={() => {
+                  setThemeDropdown(!themeDropdown);
+                  setStatesDropdown(false);
+                  setOpen(false);
+                }}
+                className="p-2.5 rounded-xl hover:bg-gray-100 transition-colors"
+                title="Change Theme"
+              >
+                <Palette className="size-5 text-gray-600" />
+              </button>
+
+              {themeDropdown && (
+                <div className="absolute right-0 top-full mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
+                  <div className="p-2 border-b border-gray-100">
+                    <p className="text-xs font-semibold text-gray-500 px-2">Theme</p>
+                  </div>
+                  <div className="p-2 space-y-1">
+                    {themeOptions.map((option) => (
+                      <button
+                        key={option.key}
+                        onClick={() => {
+                          setTheme(option.key);
+                          setThemeDropdown(false);
+                        }}
+                        className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${
+                          theme === option.key ? "bg-gray-100" : "hover:bg-gray-50"
+                        }`}
+                      >
+                        <div className={`w-5 h-5 rounded-full ${option.color} flex items-center justify-center`}>
+                          {theme === option.key && <Check className="size-3 text-white" />}
+                        </div>
+                        <span className="text-sm font-medium text-gray-700">{option.name}</span>
+                        {theme === option.key && (
+                          <span className="ml-auto text-xs text-gray-400">Active</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Agent My Ads Button */}
             {userInfo && userInfo.role === "agent" && (
               <Link
@@ -260,6 +301,32 @@ const Navbar = () => {
               <span>Call: 8770800807</span>
             </a>
 
+            {/* Theme Switcher for Mobile */}
+            <div className="pb-3 border-b border-gray-100">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">
+                Theme
+              </p>
+              <div className="flex gap-2">
+                {themeOptions.map((option) => (
+                  <button
+                    key={option.key}
+                    onClick={() => {
+                      setTheme(option.key);
+                      setMobileMenu(false);
+                    }}
+                    className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl transition-all ${
+                      theme === option.key
+                        ? "bg-gray-200 ring-2 ring-gray-400"
+                        : "bg-gray-50 hover:bg-gray-100"
+                    }`}
+                  >
+                    <div className={`w-4 h-4 rounded-full ${option.color}`}></div>
+                    <span className="text-sm font-medium">{option.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Auth Buttons for Mobile */}
             {!userInfo && (
               <div className="flex gap-2 pt-2">
@@ -284,12 +351,13 @@ const Navbar = () => {
       )}
 
       {/* Overlay for dropdowns */}
-      {(statesDropdown || open) && (
+      {(statesDropdown || open || themeDropdown) && (
         <div
-          className="fixed inset-0 z-40"
+          className="fixed inset-0 z-20"
           onClick={() => {
             setStatesDropdown(false);
             setOpen(false);
+            setThemeDropdown(false);
           }}
         />
       )}
