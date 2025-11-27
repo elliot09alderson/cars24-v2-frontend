@@ -81,7 +81,7 @@ const Login = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full pl-4 bg-white focus:ring-fuchsia-600 focus:ring-2 h-14 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
+                    className="w-full pl-4 bg-white focus:ring-green-600 focus:ring-2 h-14 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
                     placeholder="Enter your email"
                   />
                   <ErrorMessage
@@ -102,7 +102,7 @@ const Login = () => {
                   <Field
                     type="password"
                     id="password"
-                    className="w-full pl-4  focus:ring-fuchsia-600 focus:ring-2 h-14 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
+                    className="w-full pl-4  focus:ring-green-600 focus:ring-2 h-14 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
                     name="password"
                     placeholder="Enter your password"
                   />
@@ -117,7 +117,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={loader}
-                  className="w-full px-8 h-14 racing uppercase  mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-blue-600 text-white"
+                  className="w-full px-8 h-14 racing uppercase  mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-green-600 hover:bg-green-700 text-white transition-colors"
                 >
                   {loader ? "loading..." : "Submit"}
                 </button>
@@ -125,13 +125,13 @@ const Login = () => {
             )}
           </Formik>
           <div className="flex justify-between gap-8 mt-8 text-sm">
-            <Link to="/forgetPassword ">
-              <h1 className="capitalize cursor-pointer italic text-blue-600 underline">
+            <Link to="/forgetPassword">
+              <h1 className="capitalize cursor-pointer italic text-green-600 underline">
                 forgot password
               </h1>
             </Link>
             <Link to="/register">
-              <h1 className="capitalize cursor-pointer italic text-blue-600 underline">
+              <h1 className="capitalize cursor-pointer italic text-green-600 underline">
                 Register
               </h1>
             </Link>
@@ -141,13 +141,13 @@ const Login = () => {
           <h1 className="text-sm text-gray-400 tracking-wide">
             By continuing you agree to our{" "}
             <Link to="/">
-              <span className="text-blue-700 cursor-pointer">
+              <span className="text-green-600 cursor-pointer">
                 privacy policy
               </span>
             </Link>{" "}
             and{" "}
             <Link to="/">
-              <span className="text-blue-700 cursor-pointer">terms of use</span>
+              <span className="text-green-600 cursor-pointer">terms of use</span>
             </Link>
           </h1>
         </div>

@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import Register from "./Register/Register";
 import NotFound from "./components/NotFound";
 import Login from "./Login/Login";
-import Footer from "./component_01/Footer";
+import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import ResetPassword from "./ResetPassword/ResetPassword";
 import PublicRoute from "./Pages/Routes/PublicRoute";
 import PublicAdminRouter from "./Pages/ProtectedRoutes/PublicAdminRouter";
 import AdminLogin from "./Pages/ADMIN/Auth/AdminLogin";
@@ -23,9 +24,16 @@ import RegisterAgent from "./Pages/Agent/RegisterAgent";
 import LoginAgent from "./Pages/Agent/LoginAgent";
 import PublicAgentRouter from "./Pages/ProtectedRoutes/PublicAgentRouter";
 import VehicleDetails from "./Pages/Details/VehicleDetails";
-import Admin from "./Pages/Admin";
 import MyProfile from "./Pages/Agent/MyProfile";
 import Index from "./Pages/Index.tsx";
+
+// Admin Panel Components
+import AdminLayout from "./Pages/ADMIN/Components/AdminLayout";
+import AdminDashboard from "./Pages/ADMIN/Dashboard/AdminDashboard";
+import AdminVehicles from "./Pages/ADMIN/Vehicles/AdminVehicles";
+import AdminAgents from "./Pages/ADMIN/Agents/AdminAgents";
+import AdminCustomers from "./Pages/ADMIN/Customers/AdminCustomers";
+import AdminSettings from "./Pages/ADMIN/Settings/AdminSettings";
 const App = () => {
   useEffect(() => {
     const lenis = new Lenis();
@@ -66,6 +74,7 @@ const App = () => {
     {
       path: "admin",
       children: [
+        // Public admin routes (login)
         {
           element: <PublicAdminRouter />,
           children: [
@@ -75,26 +84,33 @@ const App = () => {
             },
           ],
         },
-
+        // Protected admin routes with layout
         {
-          path: "",
-
+          element: <PrivateAdminRouter />,
           children: [
             {
-              element: <PrivateAdminRouter />,
+              element: <AdminLayout />,
               children: [
                 {
                   index: true,
-                  element: <Admin />,
+                  element: <AdminDashboard />,
                 },
-                // {
-                //   path: "allAgent",
-                //   element: <GetAllAgent />,
-                // },
-                // {
-                //   path: "allBlockAgent",
-                //   element: <GetAllBlockedAgent />,
-                // },
+                {
+                  path: "vehicles",
+                  element: <AdminVehicles />,
+                },
+                {
+                  path: "agents",
+                  element: <AdminAgents />,
+                },
+                {
+                  path: "customers",
+                  element: <AdminCustomers />,
+                },
+                {
+                  path: "settings",
+                  element: <AdminSettings />,
+                },
               ],
             },
           ],
@@ -182,6 +198,14 @@ const App = () => {
       ],
     },
     {
+      path: "/forgetPassword",
+      element: <ForgotPassword />,
+    },
+    {
+      path: "/reset-password/:userType/:token",
+      element: <ResetPassword />,
+    },
+    {
       path: "*",
       element: <NotFound />,
     },
@@ -190,7 +214,6 @@ const App = () => {
   return (
     <div>
       <RouterProvider router={router} />
-      <Footer />
     </div>
   );
 };

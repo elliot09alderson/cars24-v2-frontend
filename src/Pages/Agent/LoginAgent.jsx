@@ -61,15 +61,16 @@ const LoginAgent = () => {
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              // console.log("Form Data:", values);
-              const res = dispatch(agent_login(values)).then(() =>
-                navigate("/agent/myAds")
-              );
-
-              console.log("rerer", res.error);
-
-              // console.log(userInfo)
+            onSubmit={async (values) => {
+              try {
+                const result = await dispatch(agent_login(values)).unwrap();
+                if (result) {
+                  toast.success("Login successful!");
+                  navigate("/agent/myAds");
+                }
+              } catch (error) {
+                toast.error(error?.error || "Login failed. Please try again.");
+              }
             }}
           >
             {({ isSubmitting }) => (
@@ -79,7 +80,7 @@ const LoginAgent = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full pl-4 bg-white focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
+                    className="w-full pl-4 bg-white focus:ring-green-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
                     placeholder="Enter your email"
                   />
                   <ErrorMessage
@@ -94,7 +95,7 @@ const LoginAgent = () => {
                   <Field
                     type="password"
                     id="password"
-                    className="w-full pl-4  focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
+                    className="w-full pl-4  focus:ring-green-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
                     name="password"
                     placeholder="Enter your password"
                   />
@@ -109,7 +110,7 @@ const LoginAgent = () => {
                 <button
                   type="submit"
                   // disabled={isSubmitting}
-                  className="w-full px-8 lg:h-12 h-12 mt-4 rounded-md border tracking-wide text-lg  border-gray-300 bg-blue-600 text-white"
+                  className="w-full px-8 lg:h-12 h-12 mt-4 rounded-md border tracking-wide text-lg  border-gray-300 bg-green-600 hover:bg-green-700 text-white transition-colors"
                 >
                   Submit
                 </button>
@@ -117,14 +118,14 @@ const LoginAgent = () => {
             )}
           </Formik>
           <div className="flex justify-between gap-8 mt-8 text-sm">
-            <Link to="/forgetPassword ">
-              <h1 className="capitalize cursor-pointer text-blue-600 underline">
+            <Link to="/forgetPassword">
+              <h1 className="capitalize cursor-pointer text-green-600 underline">
                 forgot password ?
               </h1>
             </Link>
             <Link
               to="/agent/register"
-              className="flex gap-2 items-center underline text-blue-600"
+              className="flex gap-2 items-center underline text-green-600"
             >
               <Milestone />
               <h1 className="capitalize cursor-pointer ">Register</h1>
@@ -135,13 +136,13 @@ const LoginAgent = () => {
           <h1 className="text-sm text-gray-400 tracking-wide">
             By continuing you agree to our{" "}
             <Link to="/">
-              <span className="text-blue-700 cursor-pointer">
+              <span className="text-green-600 cursor-pointer">
                 privacy policy
               </span>
             </Link>{" "}
             and{" "}
             <Link to="/">
-              <span className="text-blue-700 cursor-pointer">terms of use</span>
+              <span className="text-green-600 cursor-pointer">terms of use</span>
             </Link>
           </h1>
         </div>

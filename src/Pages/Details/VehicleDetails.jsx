@@ -6,6 +6,7 @@ import Great_things from "./Sections/Great_things";
 import Car_inspection from "./Sections/Car_inspection";
 import Book_free from "./Sections/Book_free";
 import Navbar from "../../component_01/Navbar.jsx";
+import Footer from "../../component_01/Footer.jsx";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchVehicleDetail } from "../../../rtk/slices/vehicleSlice";
@@ -33,6 +34,7 @@ const VehicleDetails = () => {
             <Book_free data={vehicleDetails} />
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

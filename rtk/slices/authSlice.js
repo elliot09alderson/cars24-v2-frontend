@@ -137,6 +137,45 @@ export const check_session = createAsyncThunk(
   }
 );
 
+// Forgot Password
+export const forgot_password = createAsyncThunk(
+  "auth/forgot_password",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.post("/auth/forgot-password", info);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Reset Password
+export const reset_password = createAsyncThunk(
+  "auth/reset_password",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.post("/auth/reset-password", info);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Verify Reset Token
+export const verify_reset_token = createAsyncThunk(
+  "auth/verify_reset_token",
+  async ({ userType, token }, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.get(`/auth/verify-reset-token/${userType}/${token}`);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const authReducer = createSlice({
   name: "auth",
   initialState: {
@@ -244,6 +283,46 @@ export const authReducer = createSlice({
         state.successMessage = payload.message;
         state.loader = false;
         state.userInfo = payload.data;
+      })
+      // Forgot Password
+      .addCase(forgot_password.pending, (state) => {
+        state.loader = true;
+        state.errorMessage = "";
+        state.successMessage = "";
+      })
+      .addCase(forgot_password.rejected, (state, { payload }) => {
+        state.errorMessage = payload?.error || "Failed to send reset email";
+        state.loader = false;
+      })
+      .addCase(forgot_password.fulfilled, (state, { payload }) => {
+        state.successMessage = payload.message;
+        state.loader = false;
+      })
+      // Reset Password
+      .addCase(reset_password.pending, (state) => {
+        state.loader = true;
+        state.errorMessage = "";
+        state.successMessage = "";
+      })
+      .addCase(reset_password.rejected, (state, { payload }) => {
+        state.errorMessage = payload?.error || "Failed to reset password";
+        state.loader = false;
+      })
+      .addCase(reset_password.fulfilled, (state, { payload }) => {
+        state.successMessage = payload.message;
+        state.loader = false;
+      })
+      // Verify Reset Token
+      .addCase(verify_reset_token.pending, (state) => {
+        state.loader = true;
+      })
+      .addCase(verify_reset_token.rejected, (state, { payload }) => {
+        state.errorMessage = payload?.error || "Invalid or expired token";
+        state.loader = false;
+      })
+      .addCase(verify_reset_token.fulfilled, (state, { payload }) => {
+        state.successMessage = payload.message;
+        state.loader = false;
       });
   },
 });
