@@ -24,9 +24,9 @@ const Great_things = () => {
     },
   ];
   return (
-    <div className="flex  bg-linear-to-t from-white to-[#F8F4E9] gap-4 px-6  py-6 relative flex-col overflow-hidden lg:w-[650px] border rounded-2xl lg:h-[400px]">
+    <div className="flex bg-gradient-to-t from-white to-orange-50/50 gap-4 px-6 py-6 relative flex-col overflow-hidden lg:w-[650px] rounded-3xl lg:h-[400px] bg-white/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/30">
       <div className="">
-        <p className="text-black lg:text-xl text-lg font-semibold">
+        <p className="text-gray-900 lg:text-xl text-lg font-semibold">
           Great things about this car
         </p>
       </div>
@@ -38,8 +38,7 @@ const Great_things = () => {
           >
             <div>
               <img
-                className="lg:size-12 size-8 bg-white rounded-full
-                      "
+                className="lg:size-12 size-8 bg-white rounded-full shadow-md"
                 src={item.img1}
                 alt=""
               />
@@ -55,7 +54,7 @@ const Great_things = () => {
       </div>
       <div className="flex lg:flex-col flex-row gap-3">
         <img
-          className="lg:size-12 size-8  bg-white rounded-full"
+          className="lg:size-12 size-8 bg-white rounded-full shadow-md"
           src={Standerd}
           alt=""
         />

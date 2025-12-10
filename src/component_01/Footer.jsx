@@ -109,18 +109,18 @@ const Footer = () => {
             <div className="flex flex-wrap gap-6 opacity-0 animate-[fadeInUp_0.6s_ease-out_0.2s_forwards]">
               <a
                 href="tel:+918770800807"
-                className="flex items-center gap-3 text-gray-400 hover:text-green-400 transition-colors group"
+                className="flex items-center gap-3 text-gray-400 hover:text-orange-400 transition-colors group"
               >
-                <div className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-green-500 group-hover:bg-green-600 group-hover:text-white transition-all">
+                <div className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-gray-500 group-hover:bg-gray-900 group-hover:text-white transition-all">
                   <Phone className="size-4" />
                 </div>
                 <span>+91 8770800807</span>
               </a>
               <a
                 href="mailto:contact@karlo.com"
-                className="flex items-center gap-3 text-gray-400 hover:text-green-400 transition-colors group"
+                className="flex items-center gap-3 text-gray-400 hover:text-orange-400 transition-colors group"
               >
-                <div className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-green-500 group-hover:bg-green-600 group-hover:text-white transition-all">
+                <div className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-gray-500 group-hover:bg-gray-900 group-hover:text-white transition-all">
                   <Mail className="size-4" />
                 </div>
                 <span>contact@karlo.com</span>
@@ -138,7 +138,7 @@ const Footer = () => {
                 <MagneticLink
                   key={social.name}
                   href={social.href}
-                  className="w-14 h-14 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-green-600 hover:border-green-600 transition-all duration-300 cursor-pointer"
+                  className="w-14 h-14 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-900 hover:border-gray-600 transition-all duration-300 cursor-pointer"
                   style={{ animationDelay: `${0.4 + idx * 0.05}s` }}
                 >
                   {social.icon}
@@ -167,10 +167,10 @@ const Footer = () => {
                 <a
                   key={link}
                   href="#"
-                  className="text-gray-500 hover:text-green-400 text-sm transition-colors relative group"
+                  className="text-gray-500 hover:text-orange-400 text-sm transition-colors relative group"
                 >
                   {link}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-green-500 group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-orange-500 group-hover:w-full transition-all duration-300" />
                 </a>
               ))}
             </div>

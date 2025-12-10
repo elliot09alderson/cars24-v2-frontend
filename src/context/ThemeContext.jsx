@@ -4,18 +4,18 @@ const ThemeContext = createContext();
 
 export const themes = {
   green: {
-    name: "Green",
-    primary: "16 163 74", // green-600
-    primaryHover: "21 128 61", // green-700
-    primaryLight: "220 252 231", // green-100
-    sidebar: "from-green-700 to-green-800",
-    sidebarText: "text-green-100",
-    sidebarActive: "bg-white text-green-700",
-    accent: "bg-green-600",
-    accentHover: "hover:bg-green-700",
-    button: "bg-green-600 hover:bg-green-700",
-    badge: "bg-green-100 text-green-700",
-    icon: "text-green-600",
+    name: "Default",
+    primary: "24 24 27", // gray-900
+    primaryHover: "0 0 0", // black
+    primaryLight: "255 237 213", // orange-100
+    sidebar: "from-gray-900 to-black",
+    sidebarText: "text-gray-100",
+    sidebarActive: "bg-white text-orange-600",
+    accent: "bg-gray-900",
+    accentHover: "hover:bg-black",
+    button: "bg-gray-900 hover:bg-black",
+    badge: "bg-orange-100 text-orange-600",
+    icon: "text-orange-500",
   },
   white: {
     name: "Light",

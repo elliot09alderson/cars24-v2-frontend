@@ -23,9 +23,9 @@ import Swal from "sweetalert2";
 // Status Badge Component
 const StatusBadge = ({ status }) => {
   const statusStyles = {
-    active: "bg-green-100 text-green-700",
+    active: "bg-orange-100 text-orange-600",
     pending: "bg-yellow-100 text-yellow-700",
-    sold: "bg-blue-100 text-blue-700",
+    sold: "bg-orange-100 text-orange-600",
     blocked: "bg-red-100 text-red-700",
   };
 
@@ -75,7 +75,7 @@ const VehicleRow = ({ vehicle, onStatusChange, onDelete }) => {
         <p className="text-sm text-gray-600">{vehicle.brand}</p>
       </td>
       <td className="px-6 py-4">
-        <p className="font-semibold text-green-600">
+        <p className="font-semibold text-orange-500">
           ₹{vehicle.price?.toLocaleString()}
         </p>
       </td>
@@ -125,7 +125,7 @@ const VehicleRow = ({ vehicle, onStatusChange, onDelete }) => {
                     </>
                   ) : (
                     <>
-                      <CheckCircle className="size-4 text-green-500" />
+                      <CheckCircle className="size-4 text-orange-500" />
                       <span className="text-sm">Activate Vehicle</span>
                     </>
                   )}
@@ -286,7 +286,7 @@ const AdminVehicles = () => {
                 placeholder="Search vehicles by name, brand, or model..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
               />
             </div>
           </div>
@@ -297,7 +297,7 @@ const AdminVehicles = () => {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-4 py-2.5 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20 text-sm"
+              className="px-4 py-2.5 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20 text-sm"
             >
               <option value="all">All</option>
               <option value="active">Active</option>
@@ -396,7 +396,7 @@ const AdminVehicles = () => {
               >
                 <ChevronLeft className="size-5" />
               </button>
-              <span className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium">
+              <span className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium">
                 {currentPage}
               </span>
               <button

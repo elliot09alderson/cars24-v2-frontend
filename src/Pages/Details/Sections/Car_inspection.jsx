@@ -8,9 +8,9 @@ import shield from "/public/image/insurance.png";
 
 const Car_inspection = ({ vehicleDetails }) => {
   return (
-    <div className="flex gap-4 lg:px-6 px-2 bg-[#FFFFFF] py-6  flex-col lg:w-[650px] shadow-xl   rounded-2xl lg:h-[400px]">
+    <div className="flex gap-4 lg:px-6 px-4 py-6 flex-col lg:w-[650px] lg:h-[400px] bg-white/90 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/30">
       <div>
-        <p className="lg:text-xl text-lg font-semibold">
+        <p className="lg:text-xl text-lg font-semibold text-gray-900">
           Car inspection report
         </p>
       </div>
@@ -49,7 +49,7 @@ const Car_inspection = ({ vehicleDetails }) => {
             inspected with 140-quality checks.
           </p>
         </div>
-        <div className="bg-[#EF6E0B] p-2 px-8 rounded-lg">
+        <div className="bg-[#EF6E0B] p-2.5 px-8 rounded-2xl shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300 cursor-pointer hover:bg-[#d86109]">
           <p className="text-white font-semibold text-center text-sm lg:text-lg">
             View inspection report
           </p>

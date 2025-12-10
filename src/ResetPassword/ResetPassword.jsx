@@ -63,7 +63,7 @@ const ResetPassword = () => {
       >
         <div className="backdrop-blur-2xl bg-white lg:absolute h-screen lg:w-[27vw] lg:h-[80vh] right-4 items-center lg:rounded-2xl flex flex-col gap-4 z-10 lg:px-16 px-8 justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">Verifying reset link...</p>
           </div>
         </div>
@@ -106,7 +106,7 @@ const ResetPassword = () => {
             </p>
             <Link
               to="/forgetPassword"
-              className="px-6 py-3 bg-blue-600 text-white rounded-md mt-4"
+              className="px-6 py-3 bg-gray-900 text-white rounded-md mt-4"
             >
               Request New Link
             </Link>
@@ -138,9 +138,9 @@ const ResetPassword = () => {
 
           {passwordReset ? (
             <div className="flex flex-col items-center gap-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
                 <svg
-                  className="w-8 h-8 text-green-600"
+                  className="w-8 h-8 text-orange-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -162,7 +162,7 @@ const ResetPassword = () => {
               </p>
               <Link
                 to="/login"
-                className="px-6 py-3 bg-blue-600 text-white rounded-md mt-4"
+                className="px-6 py-3 bg-gray-900 text-white rounded-md mt-4"
               >
                 Go to Login
               </Link>
@@ -225,7 +225,7 @@ const ResetPassword = () => {
                     <button
                       type="submit"
                       disabled={loader}
-                      className="w-full px-8 h-14 racing uppercase mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-blue-600 text-white disabled:bg-blue-400"
+                      className="w-full px-8 h-14 racing uppercase mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-gray-900 text-white disabled:bg-gray-400"
                     >
                       {loader ? "Resetting..." : "Reset Password"}
                     </button>
@@ -235,7 +235,7 @@ const ResetPassword = () => {
 
               <div className="flex justify-center mt-8 text-sm">
                 <Link to="/login">
-                  <h1 className="capitalize cursor-pointer italic text-blue-600 underline">
+                  <h1 className="capitalize cursor-pointer italic text-orange-500 underline">
                     Back to Login
                   </h1>
                 </Link>

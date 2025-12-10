@@ -143,7 +143,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             {formik.touched.name && formik.errors.name ? (
               <div className="text-red-500 text-sm mt-1">
@@ -168,7 +168,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.brand}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             {formik.touched.brand && formik.errors.brand ? (
               <div className="text-red-500 text-sm mt-1">
@@ -191,7 +191,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.model}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             {formik.touched.model && formik.errors.model ? (
               <div className="text-red-500 text-sm mt-1">
@@ -219,7 +219,7 @@ const Postcar = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.location}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           {formik.touched.location && formik.errors.location ? (
             <div className="text-red-500 text-sm mt-1">
@@ -245,7 +245,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.year}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             {formik.touched.year && formik.errors.year ? (
               <div className="text-red-500 text-sm mt-1">
@@ -270,7 +270,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.totalKmDriven}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             {formik.touched.totalKmDriven && formik.errors.totalKmDriven ? (
               <div className="text-red-500 text-sm mt-1">
@@ -295,7 +295,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.price}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             {formik.touched.price && formik.errors.price ? (
               <div className="text-red-500 text-sm mt-1">
@@ -321,7 +321,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.fuelType}
-              className="w-full px-3 h-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 h-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             >
               <option value="">Select fuel type</option>
               <option value="Petrol">Petrol</option>
@@ -352,7 +352,7 @@ const Postcar = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.owners}
-              className="w-full px-3  h-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3  h-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             >
               <option value="">Select owner type</option>
               <option value="1stOwner">1st owner</option>
@@ -382,7 +382,7 @@ const Postcar = () => {
             name="thumbnail"
             accept="image/*"
             onChange={handleThumbnailChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           {formik.touched.thumbnail && formik.errors.thumbnail ? (
             <div className="text-red-500 text-sm mt-1">
@@ -420,7 +420,7 @@ const Postcar = () => {
             accept="image/*"
             multiple
             onChange={handleImageChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           {formik.touched.vehicleimages && formik.errors.vehicleimages ? (
             <div className="text-red-500 text-sm mt-1">
@@ -453,7 +453,7 @@ const Postcar = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-500 cursor-pointer w-full text-white px-4 py-2 mt-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-orange-500 cursor-pointer w-full text-white px-4 py-2 mt-4 rounded-lg hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
           >
             {loading ? "wait .... " : "Submit"}
           </button>

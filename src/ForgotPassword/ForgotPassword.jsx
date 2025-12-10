@@ -56,9 +56,9 @@ const ForgotPassword = () => {
 
           {emailSent ? (
             <div className="flex flex-col items-center gap-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
                 <svg
-                  className="w-8 h-8 text-green-600"
+                  className="w-8 h-8 text-orange-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -80,7 +80,7 @@ const ForgotPassword = () => {
               </p>
               <Link
                 to="/login"
-                className="text-green-600 underline italic mt-4"
+                className="text-orange-500 underline italic mt-4"
               >
                 Back to Login
               </Link>
@@ -100,8 +100,8 @@ const ForgotPassword = () => {
                       onClick={() => setSelectedUserType(type)}
                       className={`px-4 py-2 rounded-md border capitalize transition-colors ${
                         selectedUserType === type
-                          ? "bg-green-600 text-white border-green-600"
-                          : "bg-white text-gray-700 border-gray-300 hover:border-green-400"
+                          ? "bg-gray-900 text-white border-gray-600"
+                          : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
                       }`}
                     >
                       {type}
@@ -129,7 +129,7 @@ const ForgotPassword = () => {
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full pl-4 bg-white focus:ring-green-600 focus:ring-2 h-14 lg:h-12 rounded-md border border-gray-300 focus:outline-none"
+                        className="w-full pl-4 bg-white focus:ring-orange-600 focus:ring-2 h-14 lg:h-12 rounded-md border border-gray-300 focus:outline-none"
                         placeholder="Enter your email"
                       />
                       <ErrorMessage
@@ -149,7 +149,7 @@ const ForgotPassword = () => {
                     <button
                       type="submit"
                       disabled={loader}
-                      className="w-full px-8 h-14 racing uppercase mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-green-600 hover:bg-green-700 text-white disabled:bg-green-400 transition-colors"
+                      className="w-full px-8 h-14 racing uppercase mt-4 lg:h-14 rounded-md border tracking-wide text-lg border-gray-300 bg-gray-900 hover:bg-black text-white disabled:bg-gray-400 transition-colors"
                     >
                       {loader ? "Sending..." : "Send Reset Link"}
                     </button>
@@ -159,7 +159,7 @@ const ForgotPassword = () => {
 
               <div className="flex justify-center mt-8 text-sm">
                 <Link to="/login">
-                  <h1 className="capitalize cursor-pointer italic text-green-600 underline">
+                  <h1 className="capitalize cursor-pointer italic text-orange-500 underline">
                     Back to Login
                   </h1>
                 </Link>

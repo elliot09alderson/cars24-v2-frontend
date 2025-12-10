@@ -59,7 +59,7 @@ const CustomerRow = ({ customer, onViewDetails }) => {
         <span
           className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
             customer.isActive !== false
-              ? "bg-green-100 text-green-700"
+              ? "bg-orange-100 text-orange-600"
               : "bg-red-100 text-red-700"
           }`}
         >
@@ -148,7 +148,7 @@ const CustomerDetailsModal = ({ customer, onClose }) => {
               <span
                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
                   customer.isActive !== false
-                    ? "bg-green-100 text-green-700"
+                    ? "bg-orange-100 text-orange-600"
                     : "bg-red-100 text-red-700"
                 }`}
               >
@@ -287,13 +287,13 @@ const AdminCustomers = () => {
         </div>
         <div className="bg-white rounded-xl border border-gray-100 p-4">
           <p className="text-sm text-gray-500">Active</p>
-          <p className="text-2xl font-bold text-green-600">
+          <p className="text-2xl font-bold text-orange-500">
             {customers.filter((c) => c.isActive !== false).length}
           </p>
         </div>
         <div className="bg-white rounded-xl border border-gray-100 p-4">
           <p className="text-sm text-gray-500">This Month</p>
-          <p className="text-2xl font-bold text-blue-600">
+          <p className="text-2xl font-bold text-orange-500">
             {
               customers.filter((c) => {
                 const thisMonth = new Date();

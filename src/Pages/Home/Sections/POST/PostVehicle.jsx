@@ -143,7 +143,7 @@ const PostVehicle = () => {
                         ? "number"
                         : "text"
                     }
-                    className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500"
+                    className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-orange-500"
                   />
                   <ErrorMessage
                     name={field}
@@ -239,7 +239,7 @@ const PostVehicle = () => {
                 accept="image/*"
                 multiple
                 onChange={(e) => handleImageChange(e, setFieldValue)}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-orange-500"
               />
               {previewImages.length > 0 && (
                 <div className="flex flex-wrap gap-4 mt-6">
@@ -272,7 +272,7 @@ const PostVehicle = () => {
             <button
               type="submit"
               disabled={loader}
-              className="w-full p-3 bg-blue-500 mt-4 text-white font-bold rounded-md hover:bg-blue-600"
+              className="w-full p-3 bg-orange-500 mt-4 text-white font-bold rounded-md hover:bg-gray-900"
             >
               {loader ? "Uploading..." : "Submit"}
             </button>

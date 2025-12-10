@@ -84,7 +84,7 @@ const MyProfile = () => {
           to={"/agent/post/ad"}
           className={` ${
             activeSidebar == 1 && " border bg-gray-100"
-          } p-4 flex  border-2 border-blue-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0  gap-3 rounded-md cursor-pointer  text-xl font-lg`}
+          } p-4 flex  border-2 border-gray-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0  gap-3 rounded-md cursor-pointer  text-xl font-lg`}
         >
           <img
             src={createad}
@@ -161,7 +161,7 @@ const MyProfile = () => {
             to={"/agent/post/ad"}
             className={` ${
               activeSidebar == 1 && " border bg-gray-100"
-            } p-4 flex  border-2 border-blue-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0 my-4 gap-3 rounded-md cursor-pointer  text-xl font-lg`}
+            } p-4 flex  border-2 border-gray-200 shadow-md  hover:border hover:bg-gray-100   text-black items-center lg:my-0 my-4 gap-3 rounded-md cursor-pointer  text-xl font-lg`}
           >
             <img
               src={createad}
@@ -242,7 +242,7 @@ const MyProfile = () => {
                   <span className="text-sm">
                     upload documents{" "}
                     <Link
-                      className="text-sm underline text-blue-600"
+                      className="text-sm underline text-orange-500"
                       to={"/agent/upload-document"}
                     >
                       {" "}

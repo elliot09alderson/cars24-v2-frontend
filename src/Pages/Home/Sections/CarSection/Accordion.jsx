@@ -69,69 +69,85 @@ const Accordion = () => {
 
   return (
     <div className="lg:w-full h-auto px-4 lg:px-0 pb-10">
-      <p className="lg:font-bold font-semibold text-xl lg:text-2xl py-10">
+      <p className="lg:font-bold font-semibold text-xl lg:text-2xl py-10 text-gray-900">
         Frequently Asked Questions
       </p>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4">
         {accordionData.map((item, idx) => (
           <div
             onClick={() => setOpen((prev) => (prev === idx ? null : idx))}
             key={idx + "accordion"}
-            className={`flex flex-col gap-4 bg-[#E5F3FF] p-3 lg:p-4 rounded-xl cursor-pointer transition-all duration-300 ${
-              idx === open ? "shadow-md" : ""
+            className={`flex flex-col bg-white/90 backdrop-blur-sm p-4 lg:p-5 rounded-2xl cursor-pointer transition-all duration-300 border ${
+              idx === open
+                ? "shadow-[0_8px_30px_rgba(0,0,0,0.08)] border-orange-200"
+                : "shadow-[0_2px_10px_rgba(0,0,0,0.04)] border-gray-100 hover:border-gray-200 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
             }`}
           >
-            <div className="flex justify-between items-start">
-              <div className="flex items-start gap-2 lg:gap-4 flex-1">
-                <span className="lg:text-xl text-sm font-semibold text-blue-600 min-w-[24px]">
-                  {idx + 1}.
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-3 lg:gap-4 flex-1">
+                <span className={`w-8 h-8 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center text-sm lg:text-base font-bold transition-all duration-300 ${
+                  idx === open
+                    ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
+                    : "bg-gray-100 text-gray-600"
+                }`}>
+                  {idx + 1}
                 </span>
-                <p className="lg:text-lg text-sm font-semibold text-gray-800">
+                <p className={`lg:text-base text-sm font-semibold transition-colors duration-300 ${
+                  idx === open ? "text-gray-900" : "text-gray-700"
+                }`}>
                   {item.title}
                 </p>
               </div>
-              <ChevronDown
-                className={`text-gray-600 transition-transform duration-300 flex-shrink-0 ${
-                  idx === open ? "rotate-180" : ""
-                }`}
-                size={20}
-              />
+              <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                idx === open
+                  ? "bg-orange-100 text-orange-500"
+                  : "bg-gray-100 text-gray-500"
+              }`}>
+                <ChevronDown
+                  className={`transition-transform duration-300 ${
+                    idx === open ? "rotate-180" : ""
+                  }`}
+                  size={18}
+                />
+              </div>
             </div>
 
             <div
               className={`overflow-hidden transition-all duration-300 ${
-                idx === open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                idx === open ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
               }`}
             >
-              <p className="pl-8 lg:pl-10 lg:text-base text-sm text-[#555] leading-relaxed">
-                {item.subheading}
-              </p>
+              <div className="pl-11 lg:pl-14 pr-2">
+                <p className="lg:text-base text-sm text-gray-600 leading-relaxed">
+                  {item.subheading}
+                </p>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
       {/* Trust Badges */}
-      <div className="mt-10 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl">
-        <h3 className="text-lg font-semibold text-center mb-4 text-gray-800">
+      <div className="mt-10 p-6 lg:p-8 bg-white/90 backdrop-blur-sm rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100">
+        <h3 className="text-lg lg:text-xl font-bold text-center mb-6 text-gray-900">
           Why Trust KARLO?
         </h3>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
-          <div className="p-3">
-            <p className="text-2xl lg:text-3xl font-bold text-blue-600">100%</p>
-            <p className="text-xs lg:text-sm text-gray-600">Legal & Official</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="p-4 bg-gradient-to-br from-orange-50 to-white rounded-2xl text-center">
+            <p className="text-2xl lg:text-3xl font-bold text-orange-500">100%</p>
+            <p className="text-xs lg:text-sm text-gray-600 mt-1">Legal & Official</p>
           </div>
-          <div className="p-3">
-            <p className="text-2xl lg:text-3xl font-bold text-green-600">0%</p>
-            <p className="text-xs lg:text-sm text-gray-600">Hidden Charges</p>
+          <div className="p-4 bg-gradient-to-br from-gray-50 to-white rounded-2xl text-center">
+            <p className="text-2xl lg:text-3xl font-bold text-gray-900">0%</p>
+            <p className="text-xs lg:text-sm text-gray-600 mt-1">Hidden Charges</p>
           </div>
-          <div className="p-3">
-            <p className="text-2xl lg:text-3xl font-bold text-blue-600">Licensed</p>
-            <p className="text-xs lg:text-sm text-gray-600">Govt. Authorized</p>
+          <div className="p-4 bg-gradient-to-br from-orange-50 to-white rounded-2xl text-center">
+            <p className="text-2xl lg:text-3xl font-bold text-orange-500">Licensed</p>
+            <p className="text-xs lg:text-sm text-gray-600 mt-1">Govt. Authorized</p>
           </div>
-          <div className="p-3">
-            <p className="text-2xl lg:text-3xl font-bold text-green-600">150+</p>
-            <p className="text-xs lg:text-sm text-gray-600">Point Inspection</p>
+          <div className="p-4 bg-gradient-to-br from-gray-50 to-white rounded-2xl text-center">
+            <p className="text-2xl lg:text-3xl font-bold text-gray-900">150+</p>
+            <p className="text-xs lg:text-sm text-gray-600 mt-1">Point Inspection</p>
           </div>
         </div>
       </div>

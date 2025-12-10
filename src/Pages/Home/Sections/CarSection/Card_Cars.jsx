@@ -10,65 +10,65 @@ import { formatNumberWithCommas } from "../../../../lib/utils.js";
 
 const Card_Cars = ({ vehicle }) => {
   return (
-    <div className="w-[320px] lg:w-[300px] cursor-pointer shadow border overflow-hidden border-gray-300 rounded-xl hover:shadow-lg transition-shadow">
-      <div className="bg-gradient-to-b from-[#D9E0E4] to-white rounded-t-xl p-2">
+    <div className="w-[320px] lg:w-[300px] cursor-pointer bg-white/90 backdrop-blur-sm overflow-hidden rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] border border-gray-100/50 transition-all duration-300 hover:-translate-y-1 group">
+      <div className="bg-gradient-to-b from-gray-100 to-white rounded-t-3xl p-3">
         <img
           src={vehicle?.images?.[0] || vehicle?.thumbnail}
-          className="object-cover w-full rounded-t-xl h-48"
+          className="object-cover w-full rounded-2xl h-48 group-hover:scale-[1.02] transition-transform duration-300"
           alt={vehicle?.name}
           onError={(e) => {
             e.target.src = "https://via.placeholder.com/300x200?text=No+Image";
           }}
         />
       </div>
-      <div className="flex flex-col gap-1 px-3">
-        <div className="flex items-center gap-1">
-          <p className="text-lg font-semibold truncate">{vehicle?.name}</p>
-          <p className="text-gray-700 truncate">{vehicle?.model}</p>
+      <div className="flex flex-col gap-2 px-4 py-2">
+        <div className="flex items-center gap-2">
+          <p className="text-lg font-bold text-gray-900 truncate">{vehicle?.name}</p>
+          <p className="text-gray-500 truncate text-sm">{vehicle?.model}</p>
         </div>
-        <div className="flex gap-1 items-center justify-between text-xs text-[#727373] font-semibold flex-wrap">
-          <p className="bg-[#F5F5F5] px-2 py-1 rounded-sm">
+        <div className="flex gap-1.5 items-center text-xs text-gray-600 font-medium flex-wrap">
+          <p className="bg-gray-100 px-2.5 py-1.5 rounded-xl">
             {vehicle?.totalKmDriven?.toLocaleString()} km
           </p>
-          <p className="bg-[#F5F5F5] px-2 py-1 rounded-sm">{vehicle?.fuelType}</p>
-          <p className="bg-[#F5F5F5] px-2 py-1 rounded-sm capitalize">
+          <p className="bg-gray-100 px-2.5 py-1.5 rounded-xl">{vehicle?.fuelType}</p>
+          <p className="bg-gray-100 px-2.5 py-1.5 rounded-xl capitalize">
             {vehicle?.transmission}
           </p>
-          <p className="bg-[#F5F5F5] px-2 py-1 rounded-sm">{vehicle?.owners}</p>
+          <p className="bg-gray-100 px-2.5 py-1.5 rounded-xl">{vehicle?.owners}</p>
         </div>
-        <div className="flex justify-between pt-1">
+        <div className="flex justify-between items-end pt-2">
           <div>
-            <p className="font-semibold border-b border-dashed">
+            <p className="font-semibold text-gray-700 border-b border-dashed border-gray-300">
               {vehicle?.year || "N/A"}
             </p>
           </div>
-          <div className="flex flex-col">
-            <p className="font-semibold text-end text-green-700">
+          <div className="flex flex-col items-end">
+            <p className="font-bold text-xl text-gray-900">
               ₹ {formatNumberWithCommas(vehicle?.price)}
             </p>
-            <p className="text-[#787979] text-xs border-b border-dashed font-semibold">
+            <p className="text-gray-500 text-xs font-medium">
               + other charges
             </p>
           </div>
         </div>
       </div>
-      <div className="border-b border-gray-300 mt-5 border-dashed"></div>
-      <div className="flex px-2 justify-between py-2">
+      <div className="border-t border-gray-100 mx-4 my-2"></div>
+      <div className="flex px-4 justify-between py-2">
         {vehicle?.assured && (
-          <div className="flex gap-2 bg-[#F5F5F5] p-1 px-2 rounded-sm items-center">
+          <div className="flex gap-2 bg-orange-50 p-1.5 px-3 rounded-xl items-center">
             <img className="size-4" src={checklist} alt="" />
-            <p className="text-[#7E7F7F] text-xs font-semibold">KARLO Assured</p>
+            <p className="text-orange-600 text-xs font-semibold">KARLO Assured</p>
           </div>
         )}
-        <div className="flex gap-1 bg-[#FEF4EC] p-1 px-1 rounded-xl items-center ml-auto">
+        <div className="flex gap-1.5 bg-orange-50 p-1.5 px-3 rounded-xl items-center ml-auto">
           <img className="size-4" src={autonaut} alt="" />
-          <p className="text-[#EF6E0B] text-xs font-bold">Highlights</p>
-          <ChevronDown className="size-4 text-[#7E7F7F]" />
+          <p className="text-orange-600 text-xs font-bold">Highlights</p>
+          <ChevronDown className="size-4 text-orange-400" />
         </div>
       </div>
-      <div className="flex gap-1 items-center px-2 py-2 rounded-b-xl bg-[#F5F5F5]">
-        <MapPin className="size-3 text-[#7E7F7F]" />
-        <p className="text-sm text-center font-normal text-[#7E7F7F] truncate">
+      <div className="flex gap-2 items-center px-4 py-3 rounded-b-3xl bg-gray-50/80">
+        <MapPin className="size-4 text-gray-400" />
+        <p className="text-sm font-medium text-gray-600 truncate">
           {vehicle?.location?.slice(0, 40) || "Location not specified"}
         </p>
       </div>
@@ -78,21 +78,21 @@ const Card_Cars = ({ vehicle }) => {
 
 // Loading Skeleton Component
 const CardSkeleton = () => (
-  <div className="w-[320px] lg:w-[300px] shadow border overflow-hidden border-gray-300 rounded-xl animate-pulse">
-    <div className="bg-gray-200 h-48 rounded-t-xl"></div>
-    <div className="p-3 space-y-3">
-      <div className="h-5 bg-gray-200 rounded w-3/4"></div>
+  <div className="w-[320px] lg:w-[300px] overflow-hidden rounded-3xl bg-white/80 border border-gray-100/50 shadow-[0_4px_24px_rgba(0,0,0,0.06)] animate-pulse">
+    <div className="bg-gray-100 h-48 rounded-t-3xl m-3 rounded-2xl"></div>
+    <div className="p-4 space-y-3">
+      <div className="h-5 bg-gray-100 rounded-xl w-3/4"></div>
       <div className="flex gap-2">
-        <div className="h-6 bg-gray-200 rounded w-16"></div>
-        <div className="h-6 bg-gray-200 rounded w-16"></div>
-        <div className="h-6 bg-gray-200 rounded w-16"></div>
+        <div className="h-7 bg-gray-100 rounded-xl w-16"></div>
+        <div className="h-7 bg-gray-100 rounded-xl w-16"></div>
+        <div className="h-7 bg-gray-100 rounded-xl w-16"></div>
       </div>
       <div className="flex justify-between">
-        <div className="h-5 bg-gray-200 rounded w-16"></div>
-        <div className="h-6 bg-gray-200 rounded w-24"></div>
+        <div className="h-5 bg-gray-100 rounded-xl w-16"></div>
+        <div className="h-6 bg-gray-100 rounded-xl w-24"></div>
       </div>
     </div>
-    <div className="h-10 bg-gray-100 mt-2"></div>
+    <div className="h-12 bg-gray-50 mt-2 rounded-b-3xl"></div>
   </div>
 );
 

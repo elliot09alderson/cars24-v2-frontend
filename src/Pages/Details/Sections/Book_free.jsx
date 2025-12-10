@@ -1,14 +1,66 @@
 import { BadgeCheck, Heart, PhoneCall } from "lucide-react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import direct from "/public/image/direct.png";
 import checklist from "/public/image/checklist.png";
 import { formatNumberWithCommas } from "../../../lib/utils";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToWishlist, removeFromWishlist, getWishlist } from "../../../../rtk/slices/customerSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 const Book_free = ({ data }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userInfo } = useSelector((slice) => slice.auth);
+  const { wishlist } = useSelector((slice) => slice.customer);
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const [wishlistLoading, setWishlistLoading] = useState(false);
+
+  useEffect(() => {
+    if (userInfo && userInfo.role === "customer") {
+      dispatch(getWishlist());
+    }
+  }, [dispatch, userInfo]);
+
+  useEffect(() => {
+    if (wishlist && data?._id) {
+      const found = wishlist.some((item) => item._id === data._id);
+      setIsInWishlist(found);
+    }
+  }, [wishlist, data]);
+
+  const handleWishlistToggle = async () => {
+    if (!userInfo) {
+      toast.info("Please login to add to wishlist");
+      navigate("/login");
+      return;
+    }
+
+    if (userInfo.role !== "customer") {
+      toast.info("Only customers can add to wishlist");
+      return;
+    }
+
+    setWishlistLoading(true);
+    try {
+      if (isInWishlist) {
+        await dispatch(removeFromWishlist(data._id)).unwrap();
+        setIsInWishlist(false);
+        toast.success("Removed from wishlist");
+      } else {
+        await dispatch(addToWishlist(data._id)).unwrap();
+        setIsInWishlist(true);
+        toast.success("Added to wishlist");
+      }
+    } catch (error) {
+      toast.error(error?.message || "Something went wrong");
+    }
+    setWishlistLoading(false);
+  };
+
   return (
-    <div className="flex gap-4 bg-white rounded-2xl shadow flex-col    lg:w-[500px]  relative">
-      <div className="flex flex-col gap-2 px-3 lg:px-6 py-8">
+    <div className="flex gap-4 bg-white/90 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/30 flex-col w-full sticky top-28 relative">
+      <div className="flex flex-col gap-3 px-5 lg:px-6 py-8">
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
             <p className="lg:text-2xl text-xl font-semibold">
@@ -23,7 +75,18 @@ const Book_free = ({ data }) => {
               {formatNumberWithCommas(data?.serialNo)}
             </p>
           </div>
-          <Heart />
+          <button
+            onClick={handleWishlistToggle}
+            disabled={wishlistLoading}
+            className={`p-2 rounded-xl transition-all duration-300 ${
+              isInWishlist
+                ? "bg-red-50 text-red-500"
+                : "bg-gray-100 text-gray-400 hover:bg-red-50 hover:text-red-500"
+            } ${wishlistLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+            title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <Heart className={`size-6 ${isInWishlist ? "fill-current" : ""}`} />
+          </button>
         </div>
         <p className="text-2xl font-semibold capitalize">{data.transmission}</p>
         <div className="flex items-center text-[#717272] gap-2 w-full ">

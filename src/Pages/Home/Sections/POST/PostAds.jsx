@@ -54,7 +54,7 @@ const PostAds = () => {
         className="
       flex items-center justify-center min-h-screen  "
       >
-        <div className="py-12 lg:w-[500px]  rounded-xl  shadow-md shadow-blue-300 p-10 ">
+        <div className="py-12 lg:w-[500px]  rounded-xl  shadow-md shadow-gray-300 p-10 ">
           <h2 className="text-4xl drop-shadow-xl font-semibold text-center mb-12 text-gray-800">
             Upload a new Ad
           </h2>
@@ -69,7 +69,7 @@ const PostAds = () => {
                 name="image"
                 accept="image/*"
                 onChange={handleForm}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-gray-500"
               />
               {imageFile && (
                 <div className="mt-4 text-center">
@@ -92,7 +92,7 @@ const PostAds = () => {
                 name="url"
                 value={url}
                 onChange={handleForm}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-gray-500"
                 placeholder="Enter ad URL"
                 required
               />
@@ -100,7 +100,7 @@ const PostAds = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="w-full px-4 py-2 bg-gray-900 text-white font-semibold rounded-lg hover:bg-black focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
               {loading ? "wait ...." : "Submit"}
             </button>

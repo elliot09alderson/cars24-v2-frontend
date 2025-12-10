@@ -28,13 +28,13 @@ const StatCard = ({ title, value, change, changeType, icon: Icon, color, link })
         <p className="text-3xl font-bold text-gray-900">{value}</p>
         <div className="flex items-center gap-1.5">
           {changeType === "up" ? (
-            <ArrowUpRight className="size-4 text-green-500" />
+            <ArrowUpRight className="size-4 text-orange-500" />
           ) : (
             <ArrowDownRight className="size-4 text-red-500" />
           )}
           <span
             className={`text-sm font-medium ${
-              changeType === "up" ? "text-green-500" : "text-red-500"
+              changeType === "up" ? "text-orange-500" : "text-red-500"
             }`}
           >
             {change}
@@ -66,7 +66,7 @@ const RecentVehicleCard = ({ vehicle }) => (
       <div className="flex items-center gap-2 mt-1">
         <span className="text-sm text-gray-500">{vehicle.year}</span>
         <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-        <span className="text-sm text-green-600 font-medium">
+        <span className="text-sm text-orange-500 font-medium">
           ₹{vehicle.price?.toLocaleString()}
         </span>
       </div>
@@ -75,7 +75,7 @@ const RecentVehicleCard = ({ vehicle }) => (
       <span
         className={`px-3 py-1 rounded-full text-xs font-medium ${
           vehicle.status === "active"
-            ? "bg-green-100 text-green-700"
+            ? "bg-orange-100 text-orange-600"
             : "bg-yellow-100 text-yellow-700"
         }`}
       >
@@ -89,16 +89,16 @@ const RecentVehicleCard = ({ vehicle }) => (
 const QuickAction = ({ icon: Icon, title, description, onClick }) => (
   <button
     onClick={onClick}
-    className="flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md hover:border-green-200 transition-all duration-200 text-left group"
+    className="flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md hover:border-gray-200 transition-all duration-200 text-left group"
   >
-    <div className="p-3 bg-green-600 text-white rounded-xl group-hover:scale-110 transition-transform">
+    <div className="p-3 bg-gray-900 text-white rounded-xl group-hover:scale-110 transition-transform">
       <Icon className="size-5" />
     </div>
     <div className="flex-1">
       <p className="font-semibold text-gray-900">{title}</p>
       <p className="text-sm text-gray-500">{description}</p>
     </div>
-    <ChevronRight className="size-5 text-gray-300 group-hover:text-green-600 transition-colors" />
+    <ChevronRight className="size-5 text-gray-300 group-hover:text-orange-500 transition-colors" />
   </button>
 );
 
@@ -108,8 +108,8 @@ const StateCard = ({ name, code, count, icon, onClick, isActive }) => (
     onClick={onClick}
     className={`w-full flex items-center justify-between p-4 rounded-xl transition-all duration-200 group cursor-pointer
       ${isActive
-        ? "bg-green-50 border-2 border-green-500 shadow-md"
-        : "bg-gray-50 border-2 border-transparent hover:bg-green-50 hover:border-green-200 hover:shadow-md"
+        ? "bg-orange-50 border-2 border-gray-500 shadow-md"
+        : "bg-gray-50 border-2 border-transparent hover:bg-orange-50 hover:border-gray-200 hover:shadow-md"
       }`}
   >
     <div className="flex items-center gap-3">
@@ -117,7 +117,7 @@ const StateCard = ({ name, code, count, icon, onClick, isActive }) => (
         {icon}
       </span>
       <div className="text-left">
-        <p className={`font-semibold transition-colors ${isActive ? "text-green-700" : "text-gray-900 group-hover:text-green-700"}`}>
+        <p className={`font-semibold transition-colors ${isActive ? "text-orange-600" : "text-gray-900 group-hover:text-orange-600"}`}>
           {name}
         </p>
         <p className="text-xs text-gray-500">{code}</p>
@@ -125,12 +125,12 @@ const StateCard = ({ name, code, count, icon, onClick, isActive }) => (
     </div>
     <div className="text-right flex items-center gap-2">
       <div>
-        <p className={`text-xl font-bold transition-colors ${isActive ? "text-green-600" : "text-gray-900 group-hover:text-green-600"}`}>
+        <p className={`text-xl font-bold transition-colors ${isActive ? "text-orange-500" : "text-gray-900 group-hover:text-orange-500"}`}>
           {count}
         </p>
         <p className="text-xs text-gray-500">vehicles</p>
       </div>
-      <ChevronRight className={`size-5 transition-all duration-200 ${isActive ? "text-green-600 translate-x-1" : "text-gray-300 group-hover:text-green-500 group-hover:translate-x-1"}`} />
+      <ChevronRight className={`size-5 transition-all duration-200 ${isActive ? "text-orange-500 translate-x-1" : "text-gray-300 group-hover:text-orange-500 group-hover:translate-x-1"}`} />
     </div>
   </button>
 );
@@ -264,7 +264,7 @@ const AdminDashboard = () => {
           change="12%"
           changeType="up"
           icon={Car}
-          color="bg-green-600"
+          color="bg-gray-900"
           link="/admin/vehicles"
         />
         <StatCard
@@ -273,7 +273,7 @@ const AdminDashboard = () => {
           change="8%"
           changeType="up"
           icon={UserCheck}
-          color="bg-blue-500"
+          color="bg-orange-500"
           link="/admin/agents"
         />
         <StatCard
@@ -282,7 +282,7 @@ const AdminDashboard = () => {
           change="23%"
           changeType="up"
           icon={Users}
-          color="bg-green-500"
+          color="bg-orange-500"
           link="/admin/customers"
         />
         <StatCard
@@ -309,7 +309,7 @@ const AdminDashboard = () => {
             </div>
             <Link
               to="/admin/vehicles"
-              className="text-sm font-medium text-green-600 hover:underline flex items-center gap-1"
+              className="text-sm font-medium text-orange-500 hover:underline flex items-center gap-1"
             >
               View all
               <ChevronRight className="size-4" />
@@ -384,11 +384,11 @@ const AdminDashboard = () => {
       </div>
 
       {/* Government License Badge */}
-      <div className="bg-gradient-to-r from-green-700 to-green-800 rounded-2xl p-8 text-white">
+      <div className="bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 text-white">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
+              <span className="px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded-full">
                 LICENSED
               </span>
             </div>

@@ -138,7 +138,7 @@ const Carousel = ({ data }) => {
   console.log(ads);
   return (
     <div className="">
-      <div className="flex select-none  relative flex-col overflow-hidden lg:w-[650px]  rounded-2xl lg:h-[450px]">
+      <div className="flex select-none relative flex-col overflow-hidden lg:w-[650px] rounded-3xl lg:h-[450px] bg-white/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/30">
         <Swiper
           cssMode={true}
           mousewheel={true}
@@ -152,14 +152,13 @@ const Carousel = ({ data }) => {
           {data &&
             data.map((item, idx) => (
               <SwiperSlide key={idx + "Carousel"}>
-                <img className="object-ccover  rounded-t" src={item} alt="" />
+                <img className="object-cover rounded-t-3xl" src={item} alt="" />
               </SwiperSlide>
             ))}
         </Swiper>
-        {/* <div className="border bg-linear-to-t from-black to-[#171716] h-20 p-6"></div> */}
-        <div className="flex z-10 absolute top-3 left-3 border rounded-2xl w-fit items-center gap-1 bg-black py-0.5 px-2 ">
-          <BadgeCheck className="bg-blue-600   size-5 rounded-full" />
-          <p className="text-white text-xs font-semibold">CARS24 ASSURED</p>
+        <div className="flex z-10 absolute top-4 left-4 rounded-2xl w-fit items-center gap-2 bg-black/80 backdrop-blur-sm py-1.5 px-3 shadow-lg">
+          <BadgeCheck className="text-orange-500 size-5" />
+          <p className="text-white text-xs font-semibold">KARLO ASSURED</p>
         </div>
       </div>
     </div>

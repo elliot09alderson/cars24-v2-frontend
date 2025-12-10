@@ -21,16 +21,16 @@ const VehicleDetails = () => {
   }, [slug]);
   return (
     <>
-      <div>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
         <Navbar />
-        <div className="w-full lg:py-20 py-12 bg-[#F5F5F5]  lg:px-0 px-4 h-auto flex lg:flex-row flex-col justify-center gap-10">
-          <div className="flex flex-col gap-10  mt-12 ">
+        <div className="w-full lg:py-24 py-16 lg:px-8 px-4 h-auto flex lg:flex-row flex-col justify-center gap-8 max-w-7xl mx-auto">
+          <div className="flex flex-col gap-8 mt-12 lg:flex-1">
             <Carousel data={vehicleDetails?.images} />
             <Great_things />
             <Car_overview data={vehicleDetails} />
             <Car_inspection data={vehicleDetails} />
           </div>
-          <div className="relative mt-12">
+          <div className="relative mt-12 lg:w-[380px]">
             <Book_free data={vehicleDetails} />
           </div>
         </div>

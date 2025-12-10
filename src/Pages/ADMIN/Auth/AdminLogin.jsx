@@ -24,7 +24,7 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Left Panel - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-green-600 to-green-700 text-white flex-col justify-between p-12 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 to-black text-white flex-col justify-between p-12 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-72 h-72 border border-white rounded-full"></div>
@@ -83,7 +83,7 @@ const AdminLogin = () => {
 
           {/* Header */}
           <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full text-sm font-medium text-green-700 mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-50 rounded-full text-sm font-medium text-orange-600 mb-4">
               <Shield className="size-4" />
               Admin Access Only
             </div>
@@ -129,7 +129,7 @@ const AdminLogin = () => {
                       className={`w-full pl-12 pr-4 py-3 bg-white rounded-xl border-2 transition-all duration-200 focus:outline-none ${
                         errors.email && touched.email
                           ? "border-red-300 focus:border-red-500"
-                          : "border-gray-200 focus:border-green-600"
+                          : "border-gray-200 focus:border-gray-600"
                       }`}
                       placeholder="admin@karlo.com"
                     />
@@ -157,7 +157,7 @@ const AdminLogin = () => {
                       className={`w-full pl-12 pr-4 py-3 bg-white rounded-xl border-2 transition-all duration-200 focus:outline-none ${
                         errors.password && touched.password
                           ? "border-red-300 focus:border-red-500"
-                          : "border-gray-200 focus:border-green-600"
+                          : "border-gray-200 focus:border-gray-600"
                       }`}
                       placeholder="Enter your password"
                     />
@@ -174,13 +174,13 @@ const AdminLogin = () => {
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-600"
+                      className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-600"
                     />
                     <span className="text-sm text-gray-600">Remember me</span>
                   </label>
                   <Link
                     to="/forgetPassword"
-                    className="text-sm font-medium text-green-600 hover:underline"
+                    className="text-sm font-medium text-orange-500 hover:underline"
                   >
                     Forgot password?
                   </Link>
@@ -190,7 +190,7 @@ const AdminLogin = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting || loader}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-600/30"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-gray-900 text-white rounded-xl font-semibold hover:bg-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-gray-600/30"
                 >
                   {(isSubmitting || loader) ? (
                     <>
@@ -224,7 +224,7 @@ const AdminLogin = () => {
               Contact support at{" "}
               <a
                 href="mailto:support@karlo.com"
-                className="font-medium text-green-600 hover:underline"
+                className="font-medium text-orange-500 hover:underline"
               >
                 support@karlo.com
               </a>
@@ -234,11 +234,11 @@ const AdminLogin = () => {
           {/* Terms */}
           <p className="text-center text-xs text-gray-500">
             By signing in, you agree to our{" "}
-            <Link to="/" className="text-green-600 hover:underline">
+            <Link to="/" className="text-orange-500 hover:underline">
               Privacy Policy
             </Link>{" "}
             and{" "}
-            <Link to="/" className="text-green-600 hover:underline">
+            <Link to="/" className="text-orange-500 hover:underline">
               Terms of Service
             </Link>
           </p>

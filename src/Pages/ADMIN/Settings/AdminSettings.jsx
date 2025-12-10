@@ -101,8 +101,8 @@ const AdminSettings = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                       activeTab === tab.id
-                        ? "bg-green-600 text-white"
-                        : "text-gray-600 hover:bg-green-50"
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-600 hover:bg-orange-50"
                     }`}
                   >
                     <Icon className="size-5" />
@@ -129,7 +129,7 @@ const AdminSettings = () => {
                 {/* Avatar */}
                 <div className="flex items-center gap-6">
                   <div className="relative">
-                    <div className="w-24 h-24 bg-green-600 text-white rounded-2xl flex items-center justify-center">
+                    <div className="w-24 h-24 bg-gray-900 text-white rounded-2xl flex items-center justify-center">
                       <Shield className="size-10" />
                     </div>
                     <button
@@ -158,7 +158,7 @@ const AdminSettings = () => {
                       onChange={(e) =>
                         setProfileData({ ...profileData, name: e.target.value })
                       }
-                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
                       placeholder="Enter your name"
                     />
                   </div>
@@ -177,7 +177,7 @@ const AdminSettings = () => {
                       onChange={(e) =>
                         setProfileData({ ...profileData, email: e.target.value })
                       }
-                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -196,7 +196,7 @@ const AdminSettings = () => {
                       onChange={(e) =>
                         setProfileData({ ...profileData, phone: e.target.value })
                       }
-                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -205,7 +205,7 @@ const AdminSettings = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-semibold hover:bg-black transition-colors disabled:opacity-50"
                 >
                   <Save className="size-5" />
                   {loading ? "Saving..." : "Save Changes"}
@@ -240,7 +240,7 @@ const AdminSettings = () => {
                           currentPassword: e.target.value,
                         })
                       }
-                      className="w-full pl-12 pr-12 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                      className="w-full pl-12 pr-12 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
                       placeholder="Enter current password"
                     />
                     <button
@@ -273,7 +273,7 @@ const AdminSettings = () => {
                           newPassword: e.target.value,
                         })
                       }
-                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
                       placeholder="Enter new password"
                     />
                   </div>
@@ -295,7 +295,7 @@ const AdminSettings = () => {
                           confirmPassword: e.target.value,
                         })
                       }
-                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
                       placeholder="Confirm new password"
                     />
                   </div>
@@ -304,7 +304,7 @@ const AdminSettings = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-semibold hover:bg-black transition-colors disabled:opacity-50"
                 >
                   <Lock className="size-5" />
                   {loading ? "Updating..." : "Update Password"}
@@ -344,7 +344,7 @@ const AdminSettings = () => {
                       })
                     }
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      notifications.emailNotifications ? "bg-green-600" : "bg-gray-300"
+                      notifications.emailNotifications ? "bg-gray-900" : "bg-gray-300"
                     }`}
                   >
                     <span
@@ -373,7 +373,7 @@ const AdminSettings = () => {
                       })
                     }
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      notifications.newVehicle ? "bg-green-600" : "bg-gray-300"
+                      notifications.newVehicle ? "bg-gray-900" : "bg-gray-300"
                     }`}
                   >
                     <span
@@ -400,7 +400,7 @@ const AdminSettings = () => {
                       })
                     }
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      notifications.newAgent ? "bg-green-600" : "bg-gray-300"
+                      notifications.newAgent ? "bg-gray-900" : "bg-gray-300"
                     }`}
                   >
                     <span
@@ -427,7 +427,7 @@ const AdminSettings = () => {
                       })
                     }
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      notifications.newCustomer ? "bg-green-600" : "bg-gray-300"
+                      notifications.newCustomer ? "bg-gray-900" : "bg-gray-300"
                     }`}
                   >
                     <span
@@ -440,7 +440,7 @@ const AdminSettings = () => {
 
                 <button
                   onClick={() => toast.success("Preferences saved!")}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors"
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-semibold hover:bg-black transition-colors"
                 >
                   <Save className="size-5" />
                   Save Preferences

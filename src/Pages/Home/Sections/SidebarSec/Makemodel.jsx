@@ -53,7 +53,7 @@ const Makemodel = () => {
           <div className="text-xl font-semibold  ">search</div>
           <ChevronDown
             className={` p-1 cursor-pointer duration-300 ${
-              updown ? "rotate-180 text-blue-500" : ""
+              updown ? "rotate-180 text-orange-500" : ""
             }`}
           />
         </div>
@@ -125,7 +125,7 @@ const Makemodel = () => {
                     <div>
                       <ChevronDown
                         className={` p-1 cursor-pointer duration-300 ${
-                          idx === openIdx ? "rotate-180 text-blue-500" : ""
+                          idx === openIdx ? "rotate-180 text-orange-500" : ""
                         }`}
                         onClick={() =>
                           setOpenIdx((prev) => (prev != null ? null : idx))

@@ -100,7 +100,7 @@ const Transmission = () => {
                     <p className="text-sm">({item.count})</p>
                     <ChevronDown
                       className={` p-1 cursor-pointer duration-300 ${
-                        idx === openIdx ? "rotate-180 text-blue-500" : ""
+                        idx === openIdx ? "rotate-180 text-orange-500" : ""
                       }`}
                       onClick={() =>
                         setOpenIdx((prev) => (prev != null ? null : idx))

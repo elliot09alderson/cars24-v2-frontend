@@ -19,7 +19,7 @@ const Navbar = () => {
   const [themeDropdown, setThemeDropdown] = useState(false);
 
   const themeOptions = [
-    { key: "green", name: "Green", color: "bg-green-600" },
+    { key: "green", name: "Green", color: "bg-gray-900" },
     { key: "white", name: "Light", color: "bg-gray-300" },
     { key: "black", name: "Dark", color: "bg-zinc-800" },
   ];
@@ -50,12 +50,12 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <nav className="fixed top-4 left-4 right-4 z-50 backdrop-blur-xl rounded-2xl bg-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/20">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-[72px]">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img className="h-12 lg:h-16 w-auto" src={logo} alt="KARLO" />
+            <img className="h-10 lg:h-12 w-auto" src={logo} alt="KARLO" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setStatesDropdown(!statesDropdown)}
-                className="group flex items-center gap-2 px-4 py-2 rounded-xl text-gray-700 hover:bg-green-600 hover:text-white transition-all duration-300"
+                className="group flex items-center gap-2 px-4 py-2 rounded-xl text-gray-700 hover:bg-gray-900 hover:text-white transition-all duration-300"
               >
                 <MapPin className="size-4" />
                 <span className="font-medium">Our Locations</span>
@@ -87,7 +87,7 @@ const Navbar = () => {
                     <button
                       key={state.code}
                       onClick={() => handleStateClick(state.code)}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-green-600 hover:text-white transition-all duration-200 group"
+                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-900 hover:text-white transition-all duration-200 group"
                     >
                       <span className="text-xl">{state.icon}</span>
                       <div className="text-left">
@@ -105,7 +105,7 @@ const Navbar = () => {
             {/* Buy Cars Link */}
             <Link
               to="/ads"
-              className="group flex items-center gap-2 px-4 py-2 rounded-xl text-gray-700 hover:bg-green-600 hover:text-white transition-all duration-300"
+              className="group flex items-center gap-2 px-4 py-2 rounded-xl text-gray-700 hover:bg-gray-900 hover:text-white transition-all duration-300"
             >
               <Car className="size-4" />
               <span className="font-medium">Buy Cars</span>
@@ -114,7 +114,7 @@ const Navbar = () => {
             {/* Sell Cars Link */}
             <Link
               to="/agent/post/vehicle"
-              className="group flex items-center gap-2 px-4 py-2 rounded-xl text-gray-700 hover:bg-green-600 hover:text-white transition-all duration-300"
+              className="group flex items-center gap-2 px-4 py-2 rounded-xl text-gray-700 hover:bg-gray-900 hover:text-white transition-all duration-300"
             >
               <Store className="size-4" />
               <span className="font-medium">Sell Cars</span>
@@ -123,7 +123,7 @@ const Navbar = () => {
             {/* Call Button */}
             <a
               href="tel:+918770800807"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-600/50"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white font-semibold transition-all duration-300 shadow-lg shadow-gray-600/30 hover:shadow-gray-600/50"
             >
               <Phone className="size-4" />
               <span>8770800807</span>
@@ -181,7 +181,7 @@ const Navbar = () => {
             {userInfo && userInfo.role === "agent" && (
               <Link
                 to="/agent/myAds"
-                className="hidden lg:flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700 transition-colors"
+                className="hidden lg:flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl font-medium hover:bg-black transition-colors"
               >
                 My Ads
               </Link>
@@ -190,33 +190,74 @@ const Navbar = () => {
             {/* User Menu */}
             {userInfo ? (
               <div className="relative">
-                <img
-                  src={userInfo.avatar}
+                <div
                   onClick={() => setOpen(!open)}
-                  className="h-10 w-10 rounded-full object-cover cursor-pointer border-2 border-gray-200 hover:border-green-600 transition-colors"
-                  alt="Profile"
-                />
+                  className="relative cursor-pointer"
+                >
+                  {userInfo.avatar ? (
+                    <img
+                      src={userInfo.avatar}
+                      className="h-10 w-10 rounded-full object-cover border-2 border-gray-200 hover:border-orange-500 transition-colors"
+                      alt="Profile"
+                    />
+                  ) : (
+                    <div className="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm border-2 border-gray-200 hover:border-orange-500 transition-colors">
+                      {userInfo.name?.slice(0, 2).toUpperCase() || "U"}
+                    </div>
+                  )}
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></div>
+                </div>
                 {open && (
-                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
-                    <div className="p-3 bg-gray-50 border-b border-gray-100">
-                      <p className="font-semibold text-gray-800 truncate">
-                        {userInfo.name || "User"}
-                      </p>
-                      <p className="text-xs text-gray-500 truncate">
-                        {userInfo.email}
-                      </p>
+                  <div className="absolute right-0 top-full mt-2 w-56 bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-gray-100 overflow-hidden z-50">
+                    <div className="p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
+                      <div className="flex items-center gap-3">
+                        {userInfo.avatar ? (
+                          <img
+                            src={userInfo.avatar}
+                            className="h-12 w-12 rounded-xl object-cover"
+                            alt="Profile"
+                          />
+                        ) : (
+                          <div className="h-12 w-12 rounded-xl bg-green-500 flex items-center justify-center text-white font-bold">
+                            {userInfo.name?.slice(0, 2).toUpperCase() || "U"}
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-gray-900 truncate capitalize">
+                            {userInfo.name || "User"}
+                          </p>
+                          <p className="text-xs text-gray-500 truncate">
+                            {userInfo.email}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                          userInfo.role === "agent"
+                            ? "bg-orange-100 text-orange-600"
+                            : "bg-green-100 text-green-600"
+                        }`}>
+                          {userInfo.role === "agent" ? "Agent" : "Customer"}
+                        </span>
+                      </div>
                     </div>
                     <Link
-                      to="/agent/myads"
-                      className="block px-4 py-3 hover:bg-gray-50 transition-colors"
+                      to={userInfo?.role === "agent" ? "/agent/myads" : "/profile"}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-gray-700"
                       onClick={() => setOpen(false)}
                     >
+                      <svg className="size-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
                       Profile
                     </Link>
                     <button
                       onClick={logout}
-                      className="w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+                      className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
                     >
+                      <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
                       Logout
                     </button>
                   </div>
@@ -226,13 +267,13 @@ const Navbar = () => {
               <div className="hidden lg:flex items-center gap-3">
                 <Link
                   to="/login"
-                  className="px-5 py-2 rounded-xl font-medium text-gray-700 border-2 border-gray-200 hover:border-green-600 hover:bg-green-600 hover:text-white transition-all duration-300"
+                  className="px-5 py-2 rounded-xl font-medium text-gray-700 border-2 border-gray-200 hover:border-gray-600 hover:bg-gray-900 hover:text-white transition-all duration-300"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/register"
-                  className="px-5 py-2 rounded-xl font-medium bg-green-600 text-white hover:bg-green-700 transition-colors"
+                  className="px-5 py-2 rounded-xl font-medium bg-gray-900 text-white hover:bg-black transition-colors"
                 >
                   Sign up
                 </Link>
@@ -252,7 +293,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenu && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+        <div className="lg:hidden mt-2 mx-4 bg-white/95 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden">
           <div className="px-4 py-4 space-y-2">
             {/* States Section */}
             <div className="pb-3 border-b border-gray-100">
@@ -264,7 +305,7 @@ const Navbar = () => {
                   <button
                     key={state.code}
                     onClick={() => handleStateClick(state.code)}
-                    className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 hover:bg-green-600 hover:text-white transition-all duration-200"
+                    className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 hover:bg-gray-900 hover:text-white transition-all duration-200"
                   >
                     <span>{state.icon}</span>
                     <span className="font-medium text-sm">{state.name}</span>
@@ -277,7 +318,7 @@ const Navbar = () => {
             <Link
               to="/ads"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-3 p-3 rounded-xl hover:bg-green-600 hover:text-white transition-all duration-200"
+              className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-900 hover:text-white transition-all duration-200"
             >
               <Car className="size-5" />
               <span className="font-medium">Buy Cars</span>
@@ -286,7 +327,7 @@ const Navbar = () => {
             <Link
               to="/agent/post/vehicle"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-3 p-3 rounded-xl hover:bg-green-600 hover:text-white transition-all duration-200"
+              className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-900 hover:text-white transition-all duration-200"
             >
               <Store className="size-5" />
               <span className="font-medium">Sell Cars</span>
@@ -295,7 +336,7 @@ const Navbar = () => {
             {/* Call Button */}
             <a
               href="tel:+918770800807"
-              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-green-600 text-white font-semibold"
+              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-gray-900 text-white font-semibold"
             >
               <Phone className="size-5" />
               <span>Call: 8770800807</span>
@@ -333,14 +374,14 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   onClick={() => setMobileMenu(false)}
-                  className="flex-1 text-center py-3 rounded-xl font-medium border-2 border-green-600 text-green-600"
+                  className="flex-1 text-center py-3 rounded-xl font-medium border-2 border-gray-600 text-orange-500"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setMobileMenu(false)}
-                  className="flex-1 text-center py-3 rounded-xl font-medium bg-green-600 text-white"
+                  className="flex-1 text-center py-3 rounded-xl font-medium bg-gray-900 text-white"
                 >
                   Sign up
                 </Link>

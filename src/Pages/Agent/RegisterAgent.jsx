@@ -224,7 +224,7 @@ const RegisterAgent = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="px-8 lg:h-10 h-12 rounded-md bg-blue-600 text-lg text-white w-full"
+                  className="px-8 lg:h-10 h-12 rounded-md bg-gray-900 text-lg text-white w-full"
                 >
                   Submit
                 </button>
@@ -233,7 +233,7 @@ const RegisterAgent = () => {
           </Formik>
           <div>
             <Link to="/agent/login">
-              <h1 className="capitalize cursor-pointer flex gap-2 text-blue-500  mt-8 underline">
+              <h1 className="capitalize cursor-pointer flex gap-2 text-orange-500  mt-8 underline">
                 <ArrowLeft /> Login{" "}
               </h1>
             </Link>

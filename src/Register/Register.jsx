@@ -39,12 +39,14 @@ const Register = () => {
     phoneNumber: Yup.string()
       .matches(/^\d{10}$/, "Phone number must be 10 digits")
       .required("Phone number is required"),
-    image: Yup.mixed().test(
-      "fileType",
-      "Unsupported file format",
-      (value) =>
-        value && ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
-    ),
+    image: Yup.mixed()
+      .nullable()
+      .test(
+        "fileType",
+        "Unsupported file format",
+        (value) =>
+          !value || ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
+      ),
   });
 
   const handleImageChange = (event, setFieldValue) => {
@@ -285,7 +287,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={loader}
-                  className="px-8 h-12 lg:h-12 mt-2 racing uppercase tracking-widest rounded-md bg-blue-600 text-lg text-white w-full"
+                  className="px-8 h-12 lg:h-12 mt-2 racing uppercase tracking-widest rounded-md bg-gray-900 text-lg text-white w-full"
                 >
                   {loader ? "loading...." : "Submit"}
                 </button>
@@ -294,7 +296,7 @@ const Register = () => {
           </Formik>
           <div>
             <Link to="/login">
-              <h1 className="capitalize cursor-pointer flex gap-2 text-blue-500 italic mt-8 underline">
+              <h1 className="capitalize cursor-pointer flex gap-2 text-orange-500 italic mt-8 underline">
                 <ArrowLeft /> Login{" "}
               </h1>
             </Link>

@@ -21,19 +21,17 @@ const Car_overview = ({ data }) => {
   console.log(userInfo);
   return (
     <div
-      className={`flex gap-3  lg:gap-4 px-2 lg:px-6  py-6  flex-col lg:w-[650px]  relative shadow-xl  rounded-2xl h-auto `}
+      className={`flex gap-3 lg:gap-4 px-4 lg:px-6 py-6 flex-col lg:w-[650px] relative bg-white/90 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/30 h-auto`}
     >
       {!userInfo && (
         <div
-          className={`
-         
-         h-[400px] z-40 select-none pointer-events-none shadow-xl rounded-2xl w-full absolute top-0 left-0 backdrop-blur-sm`}
+          className={`h-[400px] z-40 select-none pointer-events-none rounded-3xl w-full absolute top-0 left-0 backdrop-blur-md bg-white/30`}
         ></div>
       )}
-      <div className="flex px-4 lg:px-0 justify-between">
-        <p className="text-xl font-semibold"> Car overview</p>
+      <div className="flex px-2 lg:px-0 justify-between">
+        <p className="text-xl font-semibold text-gray-900">Car overview</p>
         <ChevronDown
-          className={`bg-gray-200 rounded-full p-1 transition-transform duration-300 ${
+          className={`bg-gray-100 hover:bg-gray-200 rounded-full p-1.5 cursor-pointer transition-all duration-300 ${
             updown ? "rotate-180" : ""
           }`}
           onClick={() => setUpDown((prev) => !prev)}

@@ -23,9 +23,9 @@ import Swal from "sweetalert2";
 // Status Badge Component
 const StatusBadge = ({ status }) => {
   const statusStyles = {
-    active: "bg-green-100 text-green-700",
+    active: "bg-orange-100 text-orange-600",
     pending: "bg-yellow-100 text-yellow-700",
-    verified: "bg-blue-100 text-blue-700",
+    verified: "bg-orange-100 text-orange-600",
     blocked: "bg-red-100 text-red-700",
   };
 
@@ -65,7 +65,7 @@ const AgentCard = ({ agent, onStatusChange, onViewDetails }) => {
               className="w-16 h-16 rounded-2xl object-cover"
             />
             {agent.status === "verified" && (
-              <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white p-1 rounded-full">
+              <div className="absolute -bottom-1 -right-1 bg-orange-500 text-white p-1 rounded-full">
                 <Shield className="size-3" />
               </div>
             )}
@@ -109,7 +109,7 @@ const AgentCard = ({ agent, onStatusChange, onViewDetails }) => {
                   }}
                   className="flex items-center gap-3 w-full px-4 py-3 hover:bg-gray-50 transition-colors"
                 >
-                  <Shield className="size-4 text-blue-500" />
+                  <Shield className="size-4 text-orange-500" />
                   <span className="text-sm">Verify Agent</span>
                 </button>
                 <button
@@ -121,7 +121,7 @@ const AgentCard = ({ agent, onStatusChange, onViewDetails }) => {
                     setMenuOpen(false);
                   }}
                   className={`flex items-center gap-3 w-full px-4 py-3 hover:bg-gray-50 transition-colors ${
-                    agent.status === "blocked" ? "text-green-600" : "text-red-600"
+                    agent.status === "blocked" ? "text-orange-500" : "text-red-600"
                   }`}
                 >
                   {agent.status === "blocked" ? (
@@ -171,7 +171,7 @@ const AgentCard = ({ agent, onStatusChange, onViewDetails }) => {
           <p className="text-xs text-gray-500">Sold</p>
         </div>
         <div>
-          <p className="text-xl font-bold text-green-600">
+          <p className="text-xl font-bold text-orange-500">
             {agent.rating?.toFixed(1) || "N/A"}
           </p>
           <p className="text-xs text-gray-500">Rating</p>
@@ -265,11 +265,11 @@ const AgentDetailsModal = ({ agent, onClose }) => {
                 <p className="text-xs text-gray-500">Total Ads</p>
               </div>
               <div className="bg-white rounded-xl p-4">
-                <p className="text-2xl font-bold text-green-600">{agent.soldCount || 0}</p>
+                <p className="text-2xl font-bold text-orange-500">{agent.soldCount || 0}</p>
                 <p className="text-xs text-gray-500">Sold</p>
               </div>
               <div className="bg-white rounded-xl p-4">
-                <p className="text-2xl font-bold text-blue-600">{agent.activeAds || 0}</p>
+                <p className="text-2xl font-bold text-orange-500">{agent.activeAds || 0}</p>
                 <p className="text-xs text-gray-500">Active</p>
               </div>
               <div className="bg-white rounded-xl p-4">
@@ -454,7 +454,7 @@ const AdminAgents = () => {
         </div>
         <div className="bg-white rounded-xl border border-gray-100 p-4">
           <p className="text-sm text-gray-500">Verified</p>
-          <p className="text-2xl font-bold text-blue-600">
+          <p className="text-2xl font-bold text-orange-500">
             {agents.filter((a) => a.status === "verified").length}
           </p>
         </div>
@@ -484,7 +484,7 @@ const AdminAgents = () => {
                 placeholder="Search by name, email, or phone..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20"
               />
             </div>
           </div>
@@ -495,7 +495,7 @@ const AdminAgents = () => {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-4 py-2.5 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-600/20 text-sm"
+              className="px-4 py-2.5 bg-gray-50 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-orange-600/20 text-sm"
             >
               <option value="all">All</option>
               <option value="verified">Verified</option>
@@ -564,7 +564,7 @@ const AdminAgents = () => {
             >
               <ChevronLeft className="size-5" />
             </button>
-            <span className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium">
+            <span className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium">
               {currentPage}
             </span>
             <button

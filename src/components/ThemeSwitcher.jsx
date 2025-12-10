@@ -10,8 +10,8 @@ const ThemeSwitcher = () => {
     {
       key: "green",
       name: "Green",
-      color: "bg-green-600",
-      ring: "ring-green-600",
+      color: "bg-gray-900",
+      ring: "ring-orange-600",
     },
     {
       key: "white",
@@ -79,7 +79,7 @@ const ThemeSwitcher = () => {
           isOpen
             ? "bg-gray-800 text-white"
             : theme === "green"
-            ? "bg-green-600 text-white hover:bg-green-700"
+            ? "bg-gray-900 text-white hover:bg-black"
             : theme === "black"
             ? "bg-zinc-800 text-white hover:bg-zinc-700"
             : "bg-gray-700 text-white hover:bg-gray-800"

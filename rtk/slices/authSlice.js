@@ -295,7 +295,7 @@ export const authReducer = createSlice({
         state.loader = false;
       })
       .addCase(check_session.fulfilled, (state, { payload }) => {
-        state.successMessage = payload.message;
+        // Don't set successMessage for session check - it should be silent
         state.loader = false;
         state.userInfo = payload.data;
       })

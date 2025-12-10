@@ -25,7 +25,13 @@ import LoginAgent from "./Pages/Agent/LoginAgent";
 import PublicAgentRouter from "./Pages/ProtectedRoutes/PublicAgentRouter";
 import VehicleDetails from "./Pages/Details/VehicleDetails";
 import MyProfile from "./Pages/Agent/MyProfile";
+import CustomerProfile from "./Pages/Customer/CustomerProfile";
 import Index from "./Pages/Index.tsx";
+
+// Agent Panel Components
+import AgentLayout from "./Pages/Agent/Components/AgentLayout";
+import AgentDashboard from "./Pages/Agent/Dashboard/AgentDashboard";
+import AgentVehicles from "./Pages/Agent/Vehicles/AgentVehicles";
 
 // Admin Panel Components
 import AdminLayout from "./Pages/ADMIN/Components/AdminLayout";
@@ -121,6 +127,7 @@ const App = () => {
     {
       path: "/agent",
       children: [
+        // Public agent routes (login/register)
         {
           element: <PublicAgentRouter />,
           children: [
@@ -128,42 +135,41 @@ const App = () => {
             { path: "login", element: <LoginAgent /> },
           ],
         },
-
+        // Protected agent routes with layout
         {
-          path: "myAds",
-
+          element: <PivateAgentRouter />,
           children: [
             {
-              element: <PivateAgentRouter />,
+              element: <AgentLayout />,
               children: [
                 {
-                  index: true,
-                  element: <MyProfile />,
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          path: "post",
-
-          children: [
-            {
-              element: <PivateAgentRouter />,
-              children: [
-                {
-                  index: true,
-                  element: <PostAds />,
+                  path: "dashboard",
+                  element: <AgentDashboard />,
                 },
                 {
-                  path: "ad",
-                  element: <PostAds />,
-                  //  element: <PostFlat />,
+                  path: "myAds",
+                  element: <AgentDashboard />,
                 },
                 {
-                  path: "vehicle",
-                  element: <PostVehicle />,
+                  path: "vehicles",
+                  element: <AgentVehicles />,
+                },
+                {
+                  path: "post",
+                  children: [
+                    {
+                      index: true,
+                      element: <PostAds />,
+                    },
+                    {
+                      path: "ad",
+                      element: <PostAds />,
+                    },
+                    {
+                      path: "vehicle",
+                      element: <PostVehicle />,
+                    },
+                  ],
                 },
               ],
             },
@@ -180,6 +186,11 @@ const App = () => {
     {
       path: "/vehicle/detail/:slug",
       element: <VehicleDetails />,
+    },
+
+    {
+      path: "/profile",
+      element: <CustomerProfile />,
     },
 
     {
