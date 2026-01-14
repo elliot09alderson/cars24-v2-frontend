@@ -108,22 +108,22 @@ const Footer = () => {
             {/* Contact */}
             <div className="flex flex-wrap gap-6 opacity-0 animate-[fadeInUp_0.6s_ease-out_0.2s_forwards]">
               <a
-                href="tel:+918770800807"
+                href="tel:+919993653299"
                 className="flex items-center gap-3 text-gray-400 hover:text-orange-400 transition-colors group"
               >
                 <div className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-gray-500 group-hover:bg-gray-900 group-hover:text-white transition-all">
                   <Phone className="size-4" />
                 </div>
-                <span>+91 8770800807</span>
+                <span>+91 9993653299</span>
               </a>
               <a
-                href="mailto:contact@karlo.com"
+                href="mailto:karlo.live2694@gmail.com"
                 className="flex items-center gap-3 text-gray-400 hover:text-orange-400 transition-colors group"
               >
                 <div className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-gray-500 group-hover:bg-gray-900 group-hover:text-white transition-all">
                   <Mail className="size-4" />
                 </div>
-                <span>contact@karlo.com</span>
+                <span>karlo.live2694@gmail.com</span>
               </a>
             </div>
           </div>

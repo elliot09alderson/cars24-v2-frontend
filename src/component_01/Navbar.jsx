@@ -122,11 +122,11 @@ const Navbar = () => {
 
             {/* Call Button */}
             <a
-              href="tel:+918770800807"
+              href="tel:+919993653299"
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white font-semibold transition-all duration-300 shadow-lg shadow-gray-600/30 hover:shadow-gray-600/50"
             >
               <Phone className="size-4" />
-              <span>8770800807</span>
+              <span>9993653299</span>
             </a>
           </div>
 
@@ -335,11 +335,11 @@ const Navbar = () => {
 
             {/* Call Button */}
             <a
-              href="tel:+918770800807"
+              href="tel:+919993653299"
               className="flex items-center justify-center gap-2 p-3 rounded-xl bg-gray-900 text-white font-semibold"
             >
               <Phone className="size-5" />
-              <span>Call: 8770800807</span>
+              <span>Call: 9993653299</span>
             </a>
 
             {/* Theme Switcher for Mobile */}
