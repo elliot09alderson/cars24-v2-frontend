@@ -215,8 +215,8 @@ export const authReducer = createSlice({
         state.loader = false;
       })
       .addCase(customer_login.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.successMessage = payload.message;
+        // console.log(payload);
+        // state.successMessage = payload.message; // Removed to prevent toast
         state.loader = false;
         state.userInfo = payload.isPresent;
       })
@@ -238,8 +238,8 @@ export const authReducer = createSlice({
         state.loader = false;
       })
       .addCase(admin_login.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.successMessage = payload.message;
+        // console.log(payload);
+        // state.successMessage = payload.message; // Removed to prevent toast
         state.loader = false;
         state.userInfo = payload.admin;
       })
@@ -273,7 +273,7 @@ export const authReducer = createSlice({
         state.loader = false;
       })
       .addCase(agent_login.fulfilled, (state, { payload }) => {
-        state.successMessage = payload.message;
+        // state.successMessage = payload.message; // Removed to prevent toast
         state.loader = false;
         state.userInfo = payload.data;
       })

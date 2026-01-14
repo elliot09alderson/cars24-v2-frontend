@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { api } from "../../api/api.js";
 
 const useFetch = ({ url, values }) => {
   const [data, setData] = useState([]);
@@ -10,10 +11,10 @@ const useFetch = ({ url, values }) => {
       try {
         setLoading(true);
         if (values) {
-          const result = await axios.post(url, values);
+          const result = await api.post(url, values);
           setData(result.data);
         } else {
-          const result = await axios.get(url);
+          const result = await api.get(url);
           setData(result.data);
         }
         setLoading(false);

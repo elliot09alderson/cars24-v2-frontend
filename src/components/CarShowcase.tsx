@@ -2,30 +2,20 @@ import { useState } from "react";
 import { Car } from "@/types/car";
 import { allCars } from "@/data/cars";
 import CarCarousel from "./CarCarousel";
-import CarDetail from "./CarDetail";
+
 
 export default function CarShowcase() {
-  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
-
-  const handleCarSelect = (car: Car) => {
-    setSelectedCar(car);
-  };
-
-  const handleCloseDetail = () => {
-    setSelectedCar(null);
+  const handleCarSelect = () => {
+    const element = document.getElementById("requirement-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <div className="min-h-screen bg-premium-950">
       {/* Premium Car Carousel */}
       <CarCarousel cars={allCars} onCarSelect={handleCarSelect} />
-
-      {/* Car Detail Modal */}
-      <CarDetail
-        car={selectedCar}
-        isOpen={!!selectedCar}
-        onClose={handleCloseDetail}
-      />
     </div>
   );
 }

@@ -61,24 +61,21 @@ const Book_free = ({ data }) => {
   return (
     <div className="flex gap-4 bg-white/90 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white/30 flex-col w-full sticky top-28 relative">
       <div className="flex flex-col gap-3 px-5 lg:px-6 py-8">
-        <div className="flex justify-between">
-          <div className="flex items-center gap-1">
-            <p className="lg:text-2xl text-xl font-semibold">
-              {formatNumberWithCommas(data?.name)}
-            </p>
+        <div className="flex justify-between items-start gap-4">
+          <div className="flex flex-col gap-1 w-full">
+            <h1 className="lg:text-2xl text-xl font-semibold leading-tight text-gray-900">
+              {data?.name} {data?.serialNo}
+            </h1>
             {userInfo?.role == "agent" && (
-              <div className="h-8 w-fit px-4 flex items-center justify-center text-white bg-red-500 rounded-full text-xs  lg:top-10 absolute xl:top-10 bottom-30 left-5 xl:left-60">
+              <span className="w-fit px-3 py-1 text-white bg-red-500 rounded-full text-xs font-medium">
                 {data.commision}% commison included
-              </div>
+              </span>
             )}
-            <p className="lg:text-3xl text-xl">
-              {formatNumberWithCommas(data?.serialNo)}
-            </p>
           </div>
           <button
             onClick={handleWishlistToggle}
             disabled={wishlistLoading}
-            className={`p-2 rounded-xl transition-all duration-300 ${
+            className={`p-2 rounded-xl transition-all duration-300 shrink-0 ${
               isInWishlist
                 ? "bg-red-50 text-red-500"
                 : "bg-gray-100 text-gray-400 hover:bg-red-50 hover:text-red-500"
@@ -88,23 +85,23 @@ const Book_free = ({ data }) => {
             <Heart className={`size-6 ${isInWishlist ? "fill-current" : ""}`} />
           </button>
         </div>
-        <p className="text-2xl font-semibold capitalize">{data.transmission}</p>
-        <div className="flex items-center text-[#717272] gap-2 w-full ">
-          <p className="py-1 rounded-sm px-1 lg:px-2 bg-[#F5F5F5] font-semibold text-xs lg:text-sm">
+        <p className="text-2xl font-semibold capitalize mt-2">{data.transmission}</p>
+        <div className="flex flex-wrap items-center text-gray-600 gap-2 w-full">
+          <span className="py-1.5 px-3 rounded-lg bg-gray-100 font-medium text-xs lg:text-sm whitespace-nowrap">
             {formatNumberWithCommas(data?.totalKmDriven)} km
-          </p>
-          <p className="py-1 rounded-sm px-1 lg:px-2 bg-[#F5F5F5]  font-semibold text-xs lg:text-sm">
+          </span>
+          <span className="py-1.5 px-3 rounded-lg bg-gray-100 font-medium text-xs lg:text-sm whitespace-nowrap">
             {data?.owners}
-          </p>
-          <p className="py-1 rounded-sm px-1 lg:px-2 bg-[#F5F5F5]  font-semibold text-xs lg:text-sm">
-            {data?.transmission ? data.transmission : "mannual"}
-          </p>
-          <p className="py-1 rounded-sm px-1 lg:px-2 bg-[#F5F5F5]  font-semibold text-xs lg:text-sm">
+          </span>
+          <span className="py-1.5 px-3 rounded-lg bg-gray-100 font-medium text-xs lg:text-sm whitespace-nowrap">
+            {data?.transmission ? data.transmission : "Manual"}
+          </span>
+          <span className="py-1.5 px-3 rounded-lg bg-gray-100 font-medium text-xs lg:text-sm whitespace-nowrap">
             {data?.fuelType}
-          </p>
-          <p className="py-1 rounded-sm px-1 lg:px-2 bg-[#F5F5F5]  font-semibold text-xs lg:text-sm">
+          </span>
+          <span className="py-1.5 px-3 rounded-lg bg-gray-100 font-medium text-xs lg:text-sm whitespace-nowrap">
             {data?.serialNo}
-          </p>
+          </span>
         </div>
         <div className="flex justify-between pt-2">
           <div className="flex items-center gap-2">

@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Register from "./Register/Register";
 import NotFound from "./components/NotFound";
-import Login from "./Login/Login";
+import Login from "./Login/CommonLogin";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import ResetPassword from "./ResetPassword/ResetPassword";
 import PublicRoute from "./Pages/Routes/PublicRoute";
 import PublicAdminRouter from "./Pages/ProtectedRoutes/PublicAdminRouter";
-import AdminLogin from "./Pages/ADMIN/Auth/AdminLogin";
+import AdminLogin from "./Login/CommonLogin";
 import { check_session, messageClear } from "../rtk/slices/authSlice";
 import PrivateAdminRouter from "./Pages/ProtectedRoutes/PivateAdminRouter";
 import CarContainer from "./Pages/Home/Sections/CarContainer/CarContainer";
@@ -21,7 +21,7 @@ import Lenis from "@studio-freight/lenis";
 import PostVehicle from "./Pages/Home/Sections/POST/PostVehicle";
 import PivateAgentRouter from "./Pages/ProtectedRoutes/PrivateAgentRouter";
 import RegisterAgent from "./Pages/Agent/RegisterAgent";
-import LoginAgent from "./Pages/Agent/LoginAgent";
+import LoginAgent from "./Login/CommonLogin";
 import PublicAgentRouter from "./Pages/ProtectedRoutes/PublicAgentRouter";
 import VehicleDetails from "./Pages/Details/VehicleDetails";
 import MyProfile from "./Pages/Agent/MyProfile";
@@ -41,6 +41,11 @@ import AdminAgents from "./Pages/ADMIN/Agents/AdminAgents";
 import AdminCustomers from "./Pages/ADMIN/Customers/AdminCustomers";
 import AdminSettings from "./Pages/ADMIN/Settings/AdminSettings";
 const App = () => {
+  const dispatch = useDispatch();
+  const { userInfo, successMessage, errorMessage, loader } = useSelector(
+    (slice) => slice.auth
+  );
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -53,20 +58,20 @@ const App = () => {
     dispatch(check_session());
   }, []);
 
-  const dispatch = useDispatch();
-  const { userInfo, successMessage, errorMessage, loader } = useSelector(
-    (slice) => slice.auth
-  );
-
   console.log(userInfo);
+  
   useEffect(() => {
-    dispatch(check_session());
-
     if (successMessage) {
-      toast.success(successMessage);
-      // dispatch(messageClear());
+      // Filter out login-related success messages if any slip through
+      if (!successMessage.toLowerCase().includes("login") && !successMessage.toLowerCase().includes("welcome")) {
+        toast.success(successMessage);
+      }
+      dispatch(messageClear());
     } else if (errorMessage) {
-      toast.error(errorMessage);
+      // Don't show toast for session check errors (unauthorized)
+      if (!errorMessage.toLowerCase().includes('unauthorized')) {
+        toast.error(errorMessage);
+      }
       dispatch(messageClear());
     }
   }, [successMessage, errorMessage]);

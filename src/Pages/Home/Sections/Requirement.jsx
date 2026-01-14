@@ -86,15 +86,19 @@ const Requirement = () => {
   });
 
   return (
-    <div className=" bg-gray-100  py-14  px-4 sm:px-6 lg:px-8">
-      <div className=" mx-auto bg-white flex items-center min-h-[60vh]  justify-center relative z-20 rounded-xl overflow-hidden ">
+    <div
+      id="requirement-section"
+      className="bg-gray-100 py-10 lg:py-14"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="bg-white flex flex-col lg:flex-row items-stretch lg:items-center min-h-[60vh] justify-center relative z-20 rounded-2xl overflow-hidden shadow-xl">
         <img src={ele2} alt="" className="absolute  " />
         <img
           src={mercedes}
           alt=""
-          className="lg:w-[464px]  w-[300px] relative z-10 hidden lg:block rounded-l-xl"
+          className="lg:w-[464px] w-full h-48 lg:h-auto object-cover relative z-10 hidden lg:block"
         />
-        <div className="p-10 border-gray-300 border z-10 rounded-r-xl bg-white shadow-md ">
+        <div className="p-6 lg:p-10 border-gray-100 lg:border-gray-300 border-none lg:border z-10 lg:rounded-r-xl bg-white flex-1">
           <div className="text-center flex flex-col gap-2 my-6">
             <h2 className="lg:text-4xl text-2xl font-bold text-gray-800">
               Finding the best deal in market ?
@@ -107,7 +111,7 @@ const Requirement = () => {
 
           <form
             onSubmit={formik.handleSubmit}
-            className="space-y-6 lg:w-[800px] w-[350px]"
+            className="space-y-4 lg:space-y-6 w-full max-w-[800px]"
           >
             {/* Car Model Field */}
             <div>
@@ -298,6 +302,7 @@ const Requirement = () => {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

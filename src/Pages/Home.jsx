@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Home/Sections/Sidebar/Sidebar";
 import CarContainer from "./Home/Sections/CarContainer/CarContainer";
 import Navbar from "../component_01/Navbar";
@@ -8,10 +8,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Mousewheel, Keyboard, Navigation, Autoplay, Pagination } from "swiper/modules";
 import karlo from "/logo/karlo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Requirement from "./Home/Sections/Requirement";
 import { useDispatch, useSelector } from "react-redux";
 import { customer_logout } from "../../rtk/slices/authSlice.js";
+import { fetchVehicles } from "../../rtk/slices/vehicleSlice.js";
 import Swal from "sweetalert2";
 import { Car, Shield, BadgeCheck, Wallet, FileCheck, MapPin, Phone, ArrowRight, Star, Users, Building2, Gavel, CheckCircle, Calendar } from "lucide-react";
 
@@ -89,8 +90,14 @@ const featuredCars = [
 
 const Home = () => {
   const { userInfo } = useSelector((slice) => slice.auth);
+  const { vehicles } = useSelector((state) => state.vehicle);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    dispatch(fetchVehicles());
+  }, []);
 
   function logout() {
     Swal.fire({
@@ -114,32 +121,86 @@ const Home = () => {
     });
   }
 
+  const handleSellCarClick = (e) => {
+    e.preventDefault();
+    if (userInfo) {
+      Swal.fire({
+        title: "Logout required",
+        text: "You must be logged out to access seller login. Logout now?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(customer_logout()).then(() => {
+             navigate("/agent/login");
+          });
+        }
+      });
+    } else {
+      navigate("/agent/login");
+    }
+  };
+
   return (
-    <div className="flex min-h-screen lg:px:4 xl:px-40 flex-col lg:py-12 w-full">
-      <div className="rounded-4xl shadow-sm flex flex-col">
+    <div className="flex min-h-screen flex-col lg:py-12 w-full max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="rounded-4xl shadow-sm flex flex-col bg-white">
         {/* Header */}
-        <div className="flex lg:flex-row flex-col h-fit lg:mt-8 mt-0 items-center justify-between lg:px-12 px-4 py-4">
-          <div className="flex gap-2">
+        <div className="flex lg:flex-row flex-col h-fit lg:mt-8 mt-4 items-center justify-between py-4 gap-4 px-4">
+          <div className="flex gap-2 flex-shrink-0">
             <Link to={"/"} className="lg:text-3xl text-lg font-bold">
               <img src={karlo} alt="karlo" className="w-64" />
             </Link>
           </div>
-          <div className="flex lg:gap-6 gap-2 text-sm items-center mt-4 lg:mt-0">
+
+          {/* Latest Added Car - Center */}
+          <div className="hidden lg:flex flex-1 justify-center items-center px-4 overflow-hidden">
+            {vehicles && vehicles.length > 0 && (
+              <Link to={`/vehicle/detail/${vehicles[0].slug}`} className="bg-white/50 backdrop-blur-md hover:bg-white/80 transition-all border border-gray-200 rounded-full py-2 px-6 flex items-center gap-4 shadow-sm group cursor-pointer max-w-xl w-full justify-between">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider whitespace-nowrap flex-shrink-0">
+                    Latest Drop
+                  </span>
+                  <div className="h-8 w-12 rounded-lg overflow-hidden flex-shrink-0">
+                     <img src={vehicles[0].thumbnail} alt="" className="h-full w-full object-cover group-hover:scale-110 transition-transform" />
+                  </div>
+                  <div className="flex flex-col truncate">
+                    <span className="text-gray-900 font-bold text-sm truncate uppercase font-heading tracking-wide">
+                      {vehicles[0].brand} {vehicles[0].model}
+                    </span>
+                    <span className="text-gray-500 text-xs truncate">
+                      {vehicles[0].year} • {vehicles[0].transmission}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                   <div className="h-8 w-px bg-gray-300"></div>
+                   <span className="text-gray-900 font-bold ml-2">₹ {parseInt(vehicles[0].price).toLocaleString('en-IN')}</span>
+                   <ArrowRight className="size-4 text-gray-400 group-hover:text-red-500 group-hover:translate-x-1 transition-all" />
+                </div>
+              </Link>
+            )}
+          </div>
+
+          <div className="flex lg:gap-6 gap-2 text-sm items-center mt-4 lg:mt-0 flex-shrink-0">
             <Link
-              to="/agent/post/vehicle"
-              className="p-4 lg:px-10 px-8 text-white rounded-xl text-sm lg:text-xl bg-gray-900 hover:bg-black transition-colors cursor-pointer"
+              to="/agent/login"
+              onClick={handleSellCarClick}
+              className="p-4 lg:px-6 px-4 text-white rounded-xl text-sm lg:text-base font-semibold bg-gray-900 hover:bg-black transition-colors cursor-pointer"
             >
               Sell Car
             </Link>
             <Link
               to="/ads"
-              className="p-4 lg:px-10 text-white rounded-xl text-sm lg:text-xl bg-gray-900 hover:bg-black transition-colors cursor-pointer"
+              className="p-4 lg:px-6 text-white rounded-xl text-sm lg:text-base font-semibold bg-gray-900 hover:bg-black transition-colors cursor-pointer"
             >
               Buy Cars
             </Link>
             {userInfo ? (
               <div
-                className="p-4 px-5 lg:px-10 text-gray-800 rounded-xl bg-gray-200 hover:bg-gray-300 font-semibold lg:text-xl text-sm cursor-pointer transition-colors"
+                className="p-4 px-5 lg:px-6 text-gray-800 rounded-xl bg-gray-200 hover:bg-gray-300 font-semibold lg:text-base text-sm cursor-pointer transition-colors"
                 onClick={logout}
               >
                 Logout
@@ -147,7 +208,7 @@ const Home = () => {
             ) : (
               <Link
                 to={"/login"}
-                className="p-4 lg:px-10 text-gray-800 rounded-xl bg-gray-200 hover:bg-gray-300 font-semibold text-sm w-fit lg:text-xl cursor-pointer transition-colors"
+                className="p-4 lg:px-6 text-gray-800 rounded-xl bg-gray-200 hover:bg-gray-300 font-semibold text-sm w-fit lg:text-base cursor-pointer transition-colors"
               >
                 Login
               </Link>
@@ -156,7 +217,7 @@ const Home = () => {
         </div>
 
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl mx-4 lg:mx-12 mt-8">
+        <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl mt-8">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-20"></div>
           <div className="relative z-10 px-6 lg:px-16 py-16 lg:py-24">
             <div className="max-w-3xl">
@@ -215,7 +276,7 @@ const Home = () => {
         </div>
 
         {/* Premium Car Showcase - Dark Theme */}
-        <div className="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden mx-4 lg:mx-12 mt-12" style={{ width: 'calc(100% - 2rem)', marginLeft: '1rem', marginRight: '1rem' }}>
+        <div className="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden mt-12">
           <Swiper
             cssMode={true}
             mousewheel={true}
@@ -349,17 +410,12 @@ const Home = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* Slide Counter */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4">
-            <span className="text-white/80 text-sm font-medium">{activeIndex + 1} / {featuredCars.length}</span>
-          </div>
         </div>
 
         <Requirement />
 
         {/* Promotional Banners Carousel */}
-        <div className="mx-4 lg:mx-12 py-12 bg-gray-50">
+        <div className="py-12 bg-gray-50">
           <div className="text-center mb-8">
             <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-2">Special Offers & Deals</h2>
             <p className="text-gray-500">Exclusive offers on government auctioned vehicles</p>
@@ -552,7 +608,7 @@ const Home = () => {
         </div>
 
         {/* Why Choose KARLO Section */}
-        <div className="flex flex-col gap-8 lg:px-12 py-16 px-4">
+        <div className="flex flex-col gap-8 py-16 px-4">
           <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">Why Choose KARLO?</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">Your trusted partner for government auctioned vehicles with complete transparency and legal documentation</p>
@@ -662,7 +718,7 @@ const Home = () => {
         </div>
 
         {/* How It Works Section */}
-        <div className="bg-gradient-to-br from-gray-50 to-white py-16 px-4 lg:px-12 mx-4 lg:mx-12 rounded-3xl">
+        <div className="bg-gradient-to-br from-gray-50 to-white py-16 px-4 rounded-3xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
             <p className="text-lg text-gray-500">Simple 4-step process to own your dream car</p>
@@ -689,7 +745,7 @@ const Home = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="mx-4 lg:mx-12 my-20">
+        <div className="my-20">
           <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10"></div>
             <div className="relative z-10">

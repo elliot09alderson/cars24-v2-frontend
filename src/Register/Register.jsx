@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { FaUserPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { customer_register } from "../../rtk/slices/authSlice";
 import { toast } from "react-toastify";
+import { Mail, Lock, User, Phone, Loader2, ChevronRight, Camera } from "lucide-react";
 import home from "/cars/car5.jpg";
-import logo from "/image/user.webp";
-import { ArrowLeft } from "lucide-react";
+import defaultAvatar from "/image/user.webp";
+import logo from "/logo/karlo.png";
+
 const Register = () => {
-  const Dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [previewImage, setPreviewImage] = useState(null);
-  const { userInfo, loader, successMessage, errorMessage } = useSelector(
+  const { loader, successMessage, errorMessage } = useSelector(
     (slice) => slice.auth
   );
+
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
@@ -57,34 +59,76 @@ const Register = () => {
     }
   };
 
+  const handleRegister = async (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("confirmPassword", values.confirmPassword);
+    formData.append("phoneNumber", values.phoneNumber);
+    formData.append("image", values.image);
+
+    try {
+        await dispatch(customer_register(formData)).unwrap();
+        navigate("/login");
+    } catch (error) {
+        // Error handling is managed by the useEffect listening to state or the slice
+        console.error("Registration failed:", error);
+    }
+  };
+
   return (
-    <div
-      className=" w-full  h-fit lg:min-h-screen bg-cover bg-center relative  flex items-center justify-center"
-      style={{
-        backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0) 80%), url(${home})`,
-      }}
-    >
-      {/* <div className="absolute bottom-24 left-24 text-4xl text-white gap-12  w-full hidden lg:flex  ">
-        <h1 className="lg:w-[600px] leading-15">
-          Hundereds of Users of Chhattisgarh used KARLO to buy their
-          first Dream Car.
-        </h1>
-        <div className="flex gap-5 items-center lg:w-[400px] justify-between font-semibold w-full text-lg mt-8 self-end">
-          <div>1000+ Active and Trusted Ads</div>
-          <div>Easy Purchase</div>
-          <div>Powerful Dashboard</div>
-        </div>
-      </div> */}
-      <div className="bg-white lg:absolute   lg:min-h-[80vh] lg:w-[27vw]   right-4 items-center  lg:rounded-lg p-8 flex flex-col gap-4 z-10 lg:px-16 w-full">
-        <div className=" pb-0  w-full  ">
-          <div className="flex flex-col ">
-            {/* <h1 className="text-gray-400 text-sm pb-8 racing">
-              Welcome to <span className="font-semibold ">KARLO</span>
-            </h1> */}
-            <h1 className="text-black text-xl font-racing  text-center lg:text-3xl racing uppercase font-semibold pb-2">
-              KARLO Register
-            </h1>
+    <div className="min-h-screen flex bg-gray-50 font-sans">
+      {/* Left Panel - Hero Image & Content */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-black text-white">
+        <img
+          src={home}
+          alt="Luxury Car"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 scale-105 transition-transform duration-10000 hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+        <div className="relative z-10 flex flex-col justify-between p-16 h-full">
+          <div>
+            <img src={logo} alt="KARLO" className="h-12 w-auto" />
           </div>
+
+          <div className="max-w-xl space-y-6">
+            <h1 className="text-5xl font-bold leading-tight racing">
+              Join the <span className="text-orange-500">Karlo Family.</span>
+            </h1>
+            <p className="text-xl text-gray-300">
+              Create an account to start your journey. Buy, sell, and experience the best car marketplace in Chhattisgarh.
+            </p>
+            <div className="flex gap-10 pt-4">
+              <div className="space-y-1">
+                <p className="text-3xl font-bold">1000+</p>
+                <p className="text-sm text-gray-400 uppercase tracking-widest">Active Ads</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-3xl font-bold">50+</p>
+                <p className="text-sm text-gray-400 uppercase tracking-widest">Verified Agents</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} KARLO. All rights reserved.
+          </div>
+        </div>
+      </div>
+
+      {/* Right Panel - Register Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 lg:p-16">
+        <div className="w-full max-w-md space-y-6 bg-white p-8 lg:p-0 rounded-2xl shadow-xl shadow-gray-200/50 lg:shadow-none">
+          <div className="space-y-2">
+            <div className="lg:hidden flex justify-center mb-6">
+                <img src={logo} alt="KARLO" className="h-10 w-auto" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 racing">Register</h2>
+            <p className="text-gray-500">Create your account to get started</p>
+          </div>
+
           <Formik
             initialValues={{
               name: "",
@@ -95,211 +139,159 @@ const Register = () => {
               image: null,
             }}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              const formData = new FormData();
-              formData.append("name", values.name);
-              formData.append("email", values.email);
-              formData.append("password", values.password);
-              formData.append("confirmPassword", values.confirmPassword);
-              formData.append("phoneNumber", values.phoneNumber);
-              formData.append("image", values.image);
-
-              const result = Dispatch(customer_register(formData)).then(() => {
-                navigate("/login");
-              });
-              console.log(result.success);
-            }}
-            className="w-full"
+            onSubmit={handleRegister}
           >
-            {({ setFieldValue }) => (
-              <Form className="flex flex-col gap-4 lg:gap-4 w-full">
+            {({ setFieldValue, isSubmitting, errors, touched }) => (
+              <Form className="space-y-4">
+                
                 {/* Image Upload */}
-                <div className="relative">
-                  <input
-                    type="file"
-                    id="image"
-                    accept="image/*"
-                    className="hidden "
-                    onChange={(event) =>
-                      handleImageChange(event, setFieldValue)
-                    }
-                  />
+                <div className="flex justify-center mb-6">
+                  <div className="relative group cursor-pointer">
+                    <input
+                      type="file"
+                      id="image"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(event) => handleImageChange(event, setFieldValue)}
+                    />
+                    <label htmlFor="image" className="cursor-pointer block">
+                      <div className="h-24 w-24 rounded-full overflow-hidden ring-4 ring-gray-100 group-hover:ring-orange-100 transition-all">
+                        <img
+                          src={previewImage || defaultAvatar}
+                          alt="Profile Preview"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="absolute bottom-0 right-0 bg-orange-500 text-white p-2 rounded-full shadow-lg group-hover:bg-orange-600 transition-colors">
+                        <Camera className="w-4 h-4" />
+                      </div>
+                    </label>
+                  </div>
                   <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
                     name="image"
                     component="div"
-                    style={{ color: "red" }}
-                  />
-                </div>
-                <div className="relative flex items-center justify-center  w-full">
-                  <label
-                    htmlFor="image"
-                    className="absolute bg-gray-500 lg:top-8 top-15 border p-1 rounded-full"
-                  >
-                    <FaUserPlus />
-                  </label>
-                  <img
-                    src={previewImage ? previewImage : logo}
-                    alt="Preview"
-                    className="rounded-full ring-2 w-20 h-20 lg:w-12 lg:h-12 object-cover"
+                    className="text-xs text-red-500 text-center mt-2 absolute transform translate-y-24"
                   />
                 </div>
 
-                {/* Name Field */}
-                <div className="mt-4  ">
-                  {/* <label
-                    htmlFor=""
-                    className=" pl-1 text-gray-800 font-semibold text-lg"
-                  >
-                    Name
-                  </label> */}
-                  <Field
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full pl-4 mt-1  focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
-                    placeholder="Enter your name"
-                  />
-                  <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
-                    name="name"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
+                {/* Name */}
+                <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <User className="size-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                    </div>
+                    <Field
+                        type="text"
+                        name="name"
+                        placeholder="Full Name"
+                        className={`w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all ${
+                            errors.name && touched.name ? "border-red-500 ring-red-500/20" : ""
+                        }`}
+                    />
+                    <ErrorMessage name="name" component="p" className="text-xs text-red-500 ml-1 mt-1" />
                 </div>
 
-                {/* Email Field */}
-                <div>
-                  {" "}
-                  {/* <label
-                    htmlFor=""
-                    className=" pl-1 text-gray-800 font-semibold text-lg"
-                  >
-                    Email
-                  </label> */}
-                  <Field
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full pl-4 mt-1  focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
-                    placeholder="Enter your email"
-                  />
-                  <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
-                    name="email"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
+                {/* Email */}
+                <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Mail className="size-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                    </div>
+                    <Field
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        className={`w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all ${
+                            errors.email && touched.email ? "border-red-500 ring-red-500/20" : ""
+                        }`}
+                    />
+                    <ErrorMessage name="email" component="p" className="text-xs text-red-500 ml-1 mt-1" />
                 </div>
 
-                {/* Password Field */}
-                <div>
-                  {/* <label
-                    htmlFor=""
-                    className=" pl-1 text-gray-800 font-semibold text-lg"
-                  >
-                    Password
-                  </label> */}
-                  <Field
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="w-full pl-4 mt-1 focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
-                    placeholder="Enter your password"
-                  />
-                  <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
-                    name="password"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                </div>
-                {/* <div>
-                  <label
-                    htmlFor=""
-                    className=" pl-1 text-gray-800 font-semibold text-lg"
-                  >
-                    Coupon
-                  </label>
-                  <Field
-                    type="coupon"
-                    id="coupon"
-                    name="coupon"
-                    className="w-full pl-4 mt-1 focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
-                    placeholder="Enter your password"
-                  />
-                  <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
-                    name="password"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
-                </div> */}
-                {/* Confirm Password Field */}
-                <div>
-                  {" "}
-                  {/* <label
-                    htmlFor=""
-                    className=" pl-1 text-gray-800 font-semibold text-lg"
-                  >
-                    Confirm password
-                  </label> */}
-                  <Field
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    className="w-full pl-4 mt-1 focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
-                    placeholder="Re-enter your password"
-                  />
-                  <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
-                    name="confirmPassword"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
+                {/* Phone */}
+                <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Phone className="size-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                    </div>
+                    <Field
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="Phone Number"
+                        className={`w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all ${
+                            errors.phoneNumber && touched.phoneNumber ? "border-red-500 ring-red-500/20" : ""
+                        }`}
+                    />
+                    <ErrorMessage name="phoneNumber" component="p" className="text-xs text-red-500 ml-1 mt-1" />
                 </div>
 
-                {/* Phone Number Field */}
-                <div>
-                  {" "}
-                  {/* <label
-                    htmlFor=""
-                    className=" pl-1 text-gray-800 font-semibold text-lg"
-                  >
-                    Phone Number
-                  </label> */}
-                  <Field
-                    type="text"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    className="w-full pl-4 mt-1  focus:ring-fuchsia-600 focus:ring-2 h-12 lg:h-12  rounded-md border border-gray-300 focus:outline-none"
-                    placeholder="Enter your phone number"
-                  />
-                  <ErrorMessage
-                    className={"lg:text-sm text-xs pl-2 pt-1"}
-                    name="phoneNumber"
-                    component="div"
-                    style={{ color: "red" }}
-                  />
+                {/* Password Info */}
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     {/* Password */}
+                    <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <Lock className="size-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                        </div>
+                        <Field
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            className={`w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all ${
+                                errors.password && touched.password ? "border-red-500 ring-red-500/20" : ""
+                            }`}
+                        />
+                        <ErrorMessage name="password" component="p" className="text-xs text-red-500 ml-1 mt-1" />
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <Lock className="size-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                        </div>
+                        <Field
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirm Password"
+                            className={`w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all ${
+                                errors.confirmPassword && touched.confirmPassword ? "border-red-500 ring-red-500/20" : ""
+                            }`}
+                        />
+                        <ErrorMessage name="confirmPassword" component="p" className="text-xs text-red-500 ml-1 mt-1" />
+                    </div>
                 </div>
 
-                {/* Submit Button */}
                 <button
-                  type="submit"
-                  disabled={loader}
-                  className="px-8 h-12 lg:h-12 mt-2 racing uppercase tracking-widest rounded-md bg-gray-900 text-lg text-white w-full"
+                    type="submit"
+                    disabled={isSubmitting || loader}
+                    className="w-full flex items-center justify-center gap-2 py-4 bg-gray-900 text-white rounded-xl font-bold text-lg hover:bg-black active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:pointer-events-none shadow-lg shadow-gray-200 mt-4"
                 >
-                  {loader ? "loading...." : "Submit"}
+                    {(isSubmitting || loader) ? (
+                        <Loader2 className="size-6 animate-spin" />
+                    ) : (
+                        <>
+                            <span>Register</span>
+                            <ChevronRight className="size-5" />
+                        </>
+                    )}
                 </button>
               </Form>
             )}
           </Formik>
-          <div>
-            <Link to="/login">
-              <h1 className="capitalize cursor-pointer flex gap-2 text-orange-500 italic mt-8 underline">
-                <ArrowLeft /> Login{" "}
-              </h1>
-            </Link>
+
+          <div className="text-center pt-2">
+            <p className="text-gray-600">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="font-bold text-orange-500 hover:text-orange-600 underline underline-offset-4 decoration-2 decoration-orange-500/30"
+              >
+                Login
+              </Link>
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-gray-100 italic">
+            <p className="text-center text-xs text-gray-400">
+              By registering, you agree to KARLO's{" "}
+              <Link to="#" className="underline">Terms of Service</Link> and <Link to="#" className="underline">Privacy Policy</Link>.
+            </p>
           </div>
         </div>
       </div>

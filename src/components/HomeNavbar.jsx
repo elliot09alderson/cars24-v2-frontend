@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Palette, Check } from "lucide-react";
+import { Palette, Check, Car, Truck } from "lucide-react";
 import karlo from "/logo/karlo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { customer_logout } from "../../rtk/slices/authSlice";
@@ -32,12 +32,37 @@ const HomeNavbar = () => {
 
   return (
     <div>
-      <div className="flex fixed top-4 left-4 right-4 lg:flex-row flex-col h-[80px] z-100 backdrop-blur-xl rounded-2xl bg-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/20 items-center justify-between lg:px-12 px-6">
-        <div className="flex gap-2 ">
-          <Link to={"/"} className="lg:text-3xl text-lg font-bold">
+      <div className="flex fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl lg:flex-row flex-col min-h-[70px] lg:h-[80px] py-3 lg:py-0 z-50 backdrop-blur-xl rounded-2xl bg-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/20 items-center justify-between px-6 lg:px-12 gap-4 lg:gap-0">
+        <div className="flex items-center">
+          <Link to={"/"} className="lg:text-3xl text-xl font-bold">
             <h1>KARLO</h1>
           </Link>
         </div>
+
+        {/* Animated Car Track */}
+        <div className="absolute left-[35%] -translate-x-1/2 hidden lg:block w-[320px] h-full overflow-hidden group pointer-events-none [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
+          {/* Track Line */}
+          <div className="absolute top-1/2 left-0 right-0 w-4/5 mx-auto h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent -translate-y-1/2"></div>
+          
+          {/* Moving Traffic */}
+          <div className="absolute top-1/2 -translate-y-1/2 w-full h-8 pointer-events-none">
+             {/* Truck */}
+             <div className="absolute animate-[moveCar_12s_linear_infinite]" style={{ animationDelay: '0s' }}>
+                <Truck className="w-6 h-6 text-gray-800 fill-gray-200" />
+             </div>
+             
+             {/* SUV */}
+             <div className="absolute animate-[moveCar_12s_linear_infinite]" style={{ animationDelay: '3s' }}>
+                <Car className="w-5 h-5 text-blue-800 fill-blue-100" />
+             </div>
+
+             {/* Sport Car */}
+             <div className="absolute animate-[moveCar_12s_linear_infinite]" style={{ animationDelay: '5s' }}>
+                <Car className="w-5 h-5 text-red-600 fill-red-100" />
+             </div>
+          </div>
+        </div>
+
         <div className="flex lg:gap-4 gap-2 text-sm items-center">
           {/* Theme Switcher */}
           <div className="relative">
@@ -82,13 +107,13 @@ const HomeNavbar = () => {
 
           <Link
             to="/agent/post/vehicle"
-            className="py-3 lg:px-8 px-6 text-white rounded-2xl text-sm lg:text-base font-medium bg-gray-900 hover:bg-black shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300 cursor-pointer"
+            className="py-2.5 lg:py-3 lg:px-8 px-4 text-white rounded-2xl text-xs lg:text-base font-medium bg-gray-900 hover:bg-black shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300 cursor-pointer"
           >
             Sell
           </Link>
           <Link
             to="/ads"
-            className="py-3 lg:px-8 px-6 text-white rounded-2xl text-sm lg:text-base font-medium bg-gray-900 hover:bg-black shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300 cursor-pointer"
+            className="py-2.5 lg:py-3 lg:px-8 px-4 text-white rounded-2xl text-xs lg:text-base font-medium bg-gray-900 hover:bg-black shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300 cursor-pointer"
           >
             See Ads
           </Link>
@@ -175,7 +200,7 @@ const HomeNavbar = () => {
           ) : (
             <Link
               to={"/login"}
-              className="py-3 lg:px-8 px-6 text-gray-800 rounded-2xl bg-white border border-gray-200 font-medium text-sm w-fit lg:text-base hover:bg-gray-50 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              className="py-2.5 lg:py-3 lg:px-8 px-4 text-gray-800 rounded-2xl bg-white border border-gray-200 font-medium text-xs lg:text-base hover:bg-gray-50 hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
               Login
             </Link>
@@ -193,6 +218,24 @@ const HomeNavbar = () => {
           />
         )}
       </div>
+      <style>{`
+        @keyframes moveCar {
+          0% {
+            left: -5%;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            left: 105%;
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 };

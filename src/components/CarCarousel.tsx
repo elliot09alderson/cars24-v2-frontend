@@ -70,7 +70,7 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
   if (!currentCar) return null;
 
   return (
-    <div className="relative w-full h-screen bg-black/50 overflow-hidden">
+    <div className="relative w-full min-h-screen lg:h-screen bg-black/50 overflow-hidden">
       {/* Fixed Header */}
 
       {/* Main Hero Section */}
@@ -96,8 +96,8 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
             </div>
 
             {/* Content Overlay */}
-            <div className="relative h-full flex items-center">
-              <div className="container mx-auto px-8">
+            <div className="relative h-full flex items-center pt-32 pb-24 lg:pt-0 lg:pb-0">
+              <div className="container mx-auto px-4 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   {/* Left Content */}
                   <motion.div
@@ -114,10 +114,10 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
 
                     {/* Main Heading */}
                     <div>
-                      <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
+                      <h1 className="text-4xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
                         {currentCar.make}
                       </h1>
-                      <h2 className="text-3xl lg:text-4xl font-light text-white/90 mt-2">
+                      <h2 className="text-xl lg:text-4xl font-light text-white/90 mt-2">
                         {currentCar.model} {currentCar.year}
                       </h2>
                     </div>
@@ -128,41 +128,41 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
                     </p>
 
                     {/* Specs */}
-                    <div className="flex items-center gap-8 text-white">
+                    <div className="flex items-center gap-6 lg:gap-8 text-white">
                       <div className="text-center">
-                        <div className="text-2xl font-bold">
+                        <div className="text-xl lg:text-2xl font-bold">
                           {currentCar.horsepower}
                         </div>
-                        <div className="text-sm text-white/70">HP</div>
+                        <div className="text-xs lg:text-sm text-white/70">HP</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold">
+                        <div className="text-xl lg:text-2xl font-bold">
                           {currentCar.engineSize.replace("L", "")}L
                         </div>
-                        <div className="text-sm text-white/70">Engine</div>
+                        <div className="text-xs lg:text-sm text-white/70">Engine</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold">
+                        <div className="text-xl lg:text-2xl font-bold">
                           {currentCar.transmission === "Manual" ? "6MT" : "8AT"}
                         </div>
-                        <div className="text-sm text-white/70">Trans</div>
+                        <div className="text-xs lg:text-sm text-white/70">Trans</div>
                       </div>
                     </div>
 
                     {/* CTAs */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
                       <Button
                         size="lg"
-                        className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-4"
+                        className="w-full sm:w-auto bg-white text-black hover:bg-gray-100 font-semibold px-8 py-4 hover:scale-105 transition-transform"
                         onClick={() => onCarSelect(currentCar)}
                       >
-                        Configure Now
+                        Find Dream Car
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                       <Button
                         variant="outline"
                         size="lg"
-                        className="border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4"
+                        className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4"
                       >
                         <Play className="w-4 h-4 mr-2" />
                         Watch Video
@@ -175,9 +175,9 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="lg:justify-self-end"
+                    className="lg:justify-self-end w-full lg:w-auto mt-8 lg:mt-0"
                   >
-                    <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl max-w-md">
+                    <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-2xl max-w-md mx-auto lg:mx-0">
                       <div className="space-y-6">
                         {/* Price */}
                         <div>
@@ -262,22 +262,22 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
         {/* Navigation Arrows */}
         <button
           onClick={prevCar}
-          className="absolute left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 z-40"
+          className="absolute left-2 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 z-40"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
         </button>
         <button
           onClick={nextCar}
-          className="absolute right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 z-40"
+          className="absolute right-2 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 z-40"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
         </button>
       </div>
 
       {/* Bottom Navigation */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40">
-        <div className="bg-white/10 backdrop-blur-sm rounded-full p-4">
-          <div className="flex items-center gap-4">
+      <div className="absolute bottom-8 left-0 right-0 lg:left-1/2 lg:-translate-x-1/2 z-40 px-4">
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl lg:rounded-full p-3 lg:p-4 max-w-fit mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-3 lg:gap-4">
             {/* Slide Indicators */}
             <div className="flex items-center gap-2">
               {cars.slice(0, 8).map((_, index) => (

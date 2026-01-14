@@ -18,7 +18,7 @@ export default function Index() {
       <Requirement />
 
       {/* Promotional Banners Carousel */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
         <div className="text-center mb-8">
           <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-2">Special Offers & Deals</h2>
           <p className="text-gray-500">Exclusive offers on government auctioned vehicles</p>
