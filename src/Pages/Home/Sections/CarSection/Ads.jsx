@@ -170,10 +170,10 @@ const Ads = () => {
             placeholder="Search by brand, model, or location..."
           />
           <button
-            className="h-14 px-8 bg-gray-900 hover:bg-black text-white font-semibold transition-colors cursor-pointer flex items-center gap-2"
+            className="h-10 lg:h-14 px-4 lg:px-8 bg-gray-900 hover:bg-black text-white font-semibold transition-colors cursor-pointer flex items-center gap-2 m-2 lg:m-0 rounded-xl lg:rounded-none"
             onClick={() => dispatch(searchVehicle(search))}
           >
-            Search
+            <span className="hidden lg:block">Search</span>
             <ArrowRight className="size-4" />
           </button>
         </div>
@@ -212,7 +212,7 @@ const Ads = () => {
             </div>
           </div>
           <div className="h-8 w-px bg-gray-700 hidden sm:block"></div>
-          <a href="tel:+918770800807" className="flex items-center gap-3 bg-white hover:bg-gray-100 px-4 py-2 rounded-xl transition-colors">
+          <a href="tel:+919993653299" className="flex items-center gap-3 bg-white hover:bg-gray-100 px-4 py-2 rounded-xl transition-colors">
             <Phone className="size-4 text-gray-900" />
             <span className="text-gray-900 font-semibold text-sm">Call Now</span>
           </a>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -162,7 +163,7 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-4"
+                        className="w-full sm:w-auto border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black font-semibold px-8 py-4"
                       >
                         <Play className="w-4 h-4 mr-2" />
                         Watch Video
@@ -225,30 +226,36 @@ export default function CarCarousel({ cars, onCarSelect }: CarCarouselProps) {
 
                         {/* Contact Options */}
                         <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 text-xs"
-                          >
-                            <Phone className="w-3 h-3 mr-1" />
-                            Call
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 text-xs"
-                          >
-                            <Mail className="w-3 h-3 mr-1" />
-                            Email
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 text-xs"
-                          >
-                            <Calendar className="w-3 h-3 mr-1" />
-                            Visit
-                          </Button>
+                          <a href="tel:+919993653299" className="flex-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full text-xs"
+                            >
+                              <Phone className="w-3 h-3 mr-1" />
+                              Call
+                            </Button>
+                          </a>
+                          <a href="mailto:karlo.live2694@gmail.com" className="flex-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full text-xs"
+                            >
+                              <Mail className="w-3 h-3 mr-1" />
+                              Email
+                            </Button>
+                          </a>
+                          <Link to="/ads" className="flex-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full text-xs"
+                            >
+                              <Calendar className="w-3 h-3 mr-1" />
+                              Visit
+                            </Button>
+                          </Link>
                         </div>
                       </div>
                     </div>

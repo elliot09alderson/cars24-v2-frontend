@@ -562,23 +562,28 @@ const Sidebar = () => {
           {/* Sort By */}
           <div className="border-t border-gray-200 pt-4">
             <p className="text-sm font-semibold mb-3">Sort By</p>
-            <select
-              value={`${filters.sortBy}-${filters.sortOrder}`}
-              onChange={(e) => {
-                const [sortBy, sortOrder] = e.target.value.split("-");
-                dispatch(setFilters({ sortBy, sortOrder }));
-              }}
-              className="w-full py-3 px-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors font-medium text-gray-700 cursor-pointer"
-            >
-              <option value="newest-desc">Newest First</option>
-              <option value="oldest-asc">Oldest First</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="year-desc">Year: Newest</option>
-              <option value="year-asc">Year: Oldest</option>
-              <option value="km-asc">KM: Low to High</option>
-              <option value="km-desc">KM: High to Low</option>
-            </select>
+            <div className="relative">
+              <select
+                value={`${filters.sortBy}-${filters.sortOrder}`}
+                onChange={(e) => {
+                  const [sortBy, sortOrder] = e.target.value.split("-");
+                  dispatch(setFilters({ sortBy, sortOrder }));
+                }}
+                className="w-full py-3 px-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors font-medium text-gray-700 cursor-pointer appearance-none"
+              >
+                <option value="newest-desc">Newest First</option>
+                <option value="oldest-asc">Oldest First</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="year-desc">Year: Newest</option>
+                <option value="year-asc">Year: Oldest</option>
+                <option value="km-asc">KM: Low to High</option>
+                <option value="km-desc">KM: High to Low</option>
+              </select>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                <ChevronDown className="size-5 text-gray-500" />
+              </div>
+            </div>
           </div>
         </div>
       )}

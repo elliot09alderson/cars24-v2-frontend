@@ -78,7 +78,7 @@ const HomeNavbar = () => {
             </button>
 
             {themeDropdown && (
-              <div className="absolute right-0 top-full mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
+              <div className="absolute lg:right-0 left-0 lg:left-auto top-full mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
                 <div className="p-2 border-b border-gray-100">
                   <p className="text-xs font-semibold text-gray-500 px-2">Theme</p>
                 </div>

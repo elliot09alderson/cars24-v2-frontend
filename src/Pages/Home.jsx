@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { customer_logout } from "../../rtk/slices/authSlice.js";
 import { fetchVehicles } from "../../rtk/slices/vehicleSlice.js";
 import Swal from "sweetalert2";
-import { Car, Shield, BadgeCheck, Wallet, FileCheck, MapPin, Phone, ArrowRight, Star, Users, Building2, Gavel, CheckCircle, Calendar } from "lucide-react";
+import { Car, Shield, BadgeCheck, Wallet, FileCheck, MapPin, Phone, ArrowRight, Star, Users, Building2, Gavel, CheckCircle, Calendar, Mail } from "lucide-react";
 
 // Featured Cars Data - Premium Dark Theme
 const featuredCars = [
@@ -241,7 +241,7 @@ const Home = () => {
                   Explore Cars <ArrowRight className="size-5" />
                 </Link>
                 <a
-                  href="tel:+918770800807"
+                  href="tel:+919993653299"
                   className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 border border-white/20"
                 >
                   <Phone className="size-5" /> Call Now
@@ -381,12 +381,12 @@ const Home = () => {
                       <p className="text-gray-900 font-semibold text-sm mb-4">{car.dealer}</p>
 
                       <div className="flex items-center gap-2">
-                        <a href="tel:+918770800807" className="flex-1 flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                        <a href="tel:+919993653299" className="flex-1 flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors">
                           <Phone className="size-4" /> Call
                         </a>
-                        <Link to="/ads" className="flex-1 flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors">
-                          <Calendar className="size-4" /> Visit
-                        </Link>
+                        <a href="mailto:karlo.live2694@gmail.com" className="flex-1 flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                          <Mail className="size-4" /> Email
+                        </a>
                       </div>
                     </div>
                   </div>
